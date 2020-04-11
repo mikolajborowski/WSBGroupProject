@@ -24,6 +24,11 @@ Route::post('login', 'UserController@authenticate');
 Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('user', 'UserController@getAuthenticatedUser');
     Route::post('user', 'UserController@changeUserData');
-    Route::post('admin/set', 'UserController@setUserAsAdmin');
-    Route::post('user/delete', 'UserController@deleteUser');
+    Route::post('admin/set/{id}', 'UserController@setUserAsAdmin');
+    Route::post('user/delete/{id}', 'UserController@deleteUser');
+    Route::get('admin/list', 'UserController@getAllUsers');
+    Route::post('channels/save', 'ChannelsController@saveChannel');
+    Route::post('channels/delete/{id}', 'ChannelsController@deleteChannel');
+    Route::get('channels/list', 'ChannelsController@getListOfChannels');
+    Route::get('channels/format', 'ChannelsController@returnChannelsContent');
 });

@@ -66,36 +66,19 @@ class UserController extends Controller
 
                         return response()->json(['token_absent'], $e->getStatusCode());
                 }
-
                 return response()->json(compact('user'));
         }
 
         public function changeUserData(Request $request)
         {
-                try {
-
-                        if (!$user = JWTAuth::parseToken()->authenticate()) {
-                                return response()->json(['user_not_found'], 404);
-                        }
-                        $user = json_decode(auth()->user(), true);
-                        $this->updateUser($user['id'], $request);
-                } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-
-                        return response()->json(['token_expired'], $e->getStatusCode());
-                } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-
-                        return response()->json(['token_invalid'], $e->getStatusCode());
-                } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-
-                        return response()->json(['token_absent'], $e->getStatusCode());
-                }
+                $user = json_decode(auth()->user(), true);
+                $this->updateUser($user['id'], $request);
 
                 return response()->json(User::find($user['id']));
         }
 
         private function updateUser($id, $request)
         {
-
                 $validator = Validator::make($request->all(), [
                         'name' => 'required|string|max:255',
                         'email' => 'required|string|email|max:255|unique:users',
@@ -106,33 +89,20 @@ class UserController extends Controller
                 $user->save();
         }
 
-        public function setUserAsAdmin(Request $request)
+        public function setUserAsAdmin($id)
         {
-                try {
 
-                        if (!$user = JWTAuth::parseToken()->authenticate()) {
-                                return response()->json(['user_not_found'], 404);
-                        }
-                        $user = json_decode(auth()->user(), true);
-                        $is_request_admin = $this->checkUserAdminSetting($user);
-                        if($is_request_admin){
-                                return response()->json('Permission denied!');
-                        }
-                        $is_already_admin = $this->checkIfUserArleadyIsAdmin($request->get('id'));
-                        if($is_already_admin){
-                                return response()->json('Invalid operation user is admin!');
-                        }
-                        $this->setUserAdmin($request->get('id'));
-                } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-
-                        return response()->json(['token_expired'], $e->getStatusCode());
-                } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-
-                        return response()->json(['token_invalid'], $e->getStatusCode());
-                } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-
-                        return response()->json(['token_absent'], $e->getStatusCode());
+                $user = json_decode(auth()->user(), true);
+                $is_request_admin = $this->checkUserAdminSetting($user);
+                if($is_request_admin){
+                        return response()->json('Permission denied!');
                 }
+                $is_already_admin = $this->checkIfUserArleadyIsAdmin($id);
+                if($is_already_admin){
+                        return response()->json('Invalid operation user is admin!');
+                }
+                $this->setUserAdmin($id);
+
 
                 return response()->json('Permission granted!');
         }
@@ -162,38 +132,36 @@ class UserController extends Controller
                 $user->save();
         }
 
-        public function deleteUser(Request $request)
+        public function deleteUser($id)
         {
-                try {
-                        if (!$user = JWTAuth::parseToken()->authenticate()) {
-                                return response()->json(['user_not_found'], 404);
-                        }
-                        $user = json_decode(auth()->user(), true);
-                        $is_request_admin = $this->checkUserAdminSetting($user);
-                        if($is_request_admin){
-                                return response()->json('Permission denied!');
-                        }
-                        $is_already_admin = $this->checkIfUserArleadyIsAdmin($request->get('id'));
-                        if($is_already_admin){
-                                return response()->json('Invalid operation user is admin!');
-                        }
-                        $this->deleteUserAsAdmin($request->get('id'));
-                } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
 
-                        return response()->json(['token_expired'], $e->getStatusCode());
-                } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-
-                        return response()->json(['token_invalid'], $e->getStatusCode());
-                } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-
-                        return response()->json(['token_absent'], $e->getStatusCode());
+                $user = json_decode(auth()->user(), true);
+                $is_request_admin = $this->checkUserAdminSetting($user);
+                if($is_request_admin){
+                        return response()->json('Permission denied!');
                 }
-
+                $is_already_admin = $this->checkIfUserArleadyIsAdmin($id);
+                if($is_already_admin){
+                        return response()->json('Invalid operation user is admin!');
+                }
+                if(empty(User::find($id))){
+                        return response()->json('User does not exist!');
+                }
+                $this->deleteUserAsAdmin((int) $id);
                 return response()->json('User deleted!');
         }
 
         private function deleteUserAsAdmin($id){
                 $user = User::find($id);
                 $user->delete();
+        }
+        
+        public function getAllUsers(){
+                $user = json_decode(auth()->user(), true);
+                $is_request_admin = $this->checkUserAdminSetting($user);
+                if($is_request_admin){
+                        return response()->json('Permission denied!');
+                }
+                return response()->json(User::all());
         }
 }

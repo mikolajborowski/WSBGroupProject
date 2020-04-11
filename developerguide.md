@@ -133,39 +133,76 @@ Return:</li> <br/>
 <hr>
 <h4>RSS channels</h4>
 <ol>
-<li>Get all channels <br/>
-Endpoint : 127.0.0.1:8000/api/rss <br/>
-Method: GET <br/>
+<li>Save channel <br/>
+METHOD: POST <br/>
+Endpoint : 127.0.0.1:8000/api/channels/save <br/>
 HEADERS: <br/>
 Authorization: Bearer {token} <br/>
-Return:</li>
+Payload (Form data): <br/>
+name: {user} <br/>
+link: {link} <br/>
+Return:</li> <br/>
 </ol>
-<pre><code>{
-
-}
+<pre><code>
+updated list of user channels
 </code></pre>
+<hr>
+<li>Delete channel <br/>
+METHOD: POST <br/>
+Endpoint : 127.0.0.1:8000/api/channels/delete/{id} <br/>
+HEADERS: <br/>
+Authorization: Bearer {token} <br/>
+Return:</li> <br/>
+</ol>
+<pre><code>
+updated list of user channels
+</code></pre>
+<hr>
+<li>Users channels list<br/>
+METHOD: get <br/>
+Endpoint : 127.0.0.1:8000/api/channels/list <br/>
+HEADERS: <br/>
+Authorization: Bearer {token} <br/>
+Return:</li> <br/>
+</ol>
+<pre><code>
+List of user channels
+</code></pre>
+<hr>
 
-
+<li>Users channels list content formated to html<br/>
+METHOD: get <br/>
+Endpoint : 127.0.0.1:8000/api/channels/format <br/>
+HEADERS: <br/>
+Authorization: Bearer {token} <br/>
+Return:</li> <br/>
+</ol>
+<pre><code>
+HTML ready to use
+</code></pre>
 <hr>
 <h4>ADMIN</h4>
 <ol>
 <h5>Rule: when database is empty admin is user with id 1!</h5><br/>
 <li>Set user as admin<br/>
-Endpoint : 127.0.0.1:8000/api/admin/set <br/>
+Endpoint : 127.0.0.1:8000/api/admin/set/{id} <br/>
 Method: POST <br/>
 HEADERS: <br/>
 Authorization: Bearer {token} <br/>
-Payload (Form data): <br/>
-id: {id} <br/>
 Return: Information about permission. <br/>
 
 <li>Delete user as admin<br/>
-Endpoint : 127.0.0.1:8000/api/user/delete <br/>
+Endpoint : 127.0.0.1:8000/api/user/delete/{id} <br/>
 Method: POST <br/>
 HEADERS: <br/>
 Authorization: Bearer {token} <br/>
-Payload (Form data): <br/>
-id: {id} <br/>
 Return: info. 
+
+<li>Get list of users as admin<br/>
+Endpoint : 127.0.0.1:8000/api/admin/list<br/>
+Method: GET <br/>
+HEADERS: <br/>
+Authorization: Bearer {token} <br/>
+Return: List of users
 
 
