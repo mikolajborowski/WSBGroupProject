@@ -50,15 +50,15 @@ Component mount .\resources\views\welcome.blade.php</p>
 <h6>Authentication</h6>
 <hr>
 <ol>
-<li>Register
-METHOD: POST
-Endpoint : 127.0.0.1:8000/api/register
-Payload (Form data):
-name: {user}
-email: {email}
-password: {password}
-password_confirmation: {password}
-Return:</li>
+<li>Register <br/>
+METHOD: POST <br/>
+Endpoint : 127.0.0.1:8000/api/register <br/>
+Payload (Form data): <br/>
+name: {user} <br/>
+email: {email} <br/>
+password: {password} <br/>
+password_confirmation: {password} <br/>
+Return:</li> <br/>
 </ol>
 <pre><code>{
     "user": {
@@ -74,12 +74,12 @@ Return:</li>
 <hr>
 <ol start="2">
 <li>Login
-Endpoint : 127.0.0.1:8000/api/login
-Method: POST
-Payload (Form data):
-email: {email}
-password: {password}
-Return:</li>
+Endpoint : 127.0.0.1:8000/api/login <br/>
+Method: POST <br/>
+Payload (Form data): <br/>
+email: {email} <br/>
+password: {password} <br/>
+Return:</li> <br/>
 </ol>
 <pre><code>{
     "token": {token}
@@ -87,12 +87,12 @@ Return:</li>
 </code></pre>
 <h6>User</h6>
 <ol>
-<li>Get info about user
-Endpoint : 127.0.0.1:8000/api/user
-Method: GET
-HEADERS:
-Authorization: Bearer {token}
-Return:</li>
+<li>Get info about user <br/>
+Endpoint : 127.0.0.1:8000/api/user <br/>
+Method: GET <br/>
+HEADERS: <br/>
+Authorization: Bearer {token} <br/>
+Return:</li> <br/>
 </ol>
 <pre><code>{
     "user": {
@@ -108,15 +108,15 @@ Return:</li>
 </code></pre>
 <hr>
 <ol start="2">
-<li>Update info about user
-Endpoint : 127.0.0.1:8000/api/user
-Method: POST
-HEADERS:
-Authorization: Bearer {token}
-Payload (Form data):
-name: {name}
-email: {email}
-Return:</li>
+<li>Update info about user <br/>
+Endpoint : 127.0.0.1:8000/api/user <br/>
+Method: POST <br/>
+HEADERS: <br/>
+Authorization: Bearer {token} <br/>
+Payload (Form data): <br/>
+name: {name} <br/>
+email: {email} <br/>
+Return:</li> <br/>
 </ol>
 <pre><code>{
     "user": {
@@ -133,11 +133,11 @@ Return:</li>
 <hr>
 <h4>RSS channels</h4>
 <ol>
-<li>Get all channels
-Endpoint : 127.0.0.1:8000/api/rss
-Method: GET
-HEADERS:
-Authorization: Bearer {token}
+<li>Get all channels <br/>
+Endpoint : 127.0.0.1:8000/api/rss <br/>
+Method: GET <br/>
+HEADERS: <br/>
+Authorization: Bearer {token} <br/>
 Return:</li>
 </ol>
 <pre><code>{
