@@ -1,15 +1,14 @@
-# DEVELOPER GUIDES
-
-#### Local environment requirements
-                
-1. Php 7.2.5 + 
-2. Composer 
-3. Git 
-4. Node
-5. Npm 
-6. linux *optional
-7. Sqlite
-8. PHP extc:
+<h1>DEVELOPER GUIDES</h1>
+<h4>Local environment requirements</h4>
+<ol>
+<li>Php 7.2.5 +</li>
+<li>Composer</li>
+<li>Git</li>
+<li>Node</li>
+<li>Npm</li>
+<li>linux *optional</li>
+<li>Sqlite</li>
+<li>PHP extc:
 BCMath PHP Extension
 Ctype PHP Extension
 Fileinfo PHP extension
@@ -26,46 +25,42 @@ Mbstring PHP Extension
 OpenSSL PHP Extension
 PDO PHP Extension
 Tokenizer PHP Extension
-XML PHP Extension
----
-#### App build commands
-
-```
-    git clone https://github.com/mikolajborowski/WSBGroupProject.git
-	cd WSBGroupProject
-	composer install 
-	touch .env
-	cp .env.example .env 
-	touch database/database.sqlite
-	php artisan migrate 
-	npm install 
-	npm run dev 
-	php artisan serve 
-	Site available on http://127.0.0.1:8000/
-```
-
----
-
-#### FOR FRONT END
-React is set up and ready in .\resources\js
-Component mount .\resources\views\welcome.blade.php
----
-
-#### REST API 
-
-###### Authentication
----
-1. Register
-METHOD: POST 
+XML PHP Extension</li>
+</ol>
+<hr>
+<h4>App build commands</h4>
+<pre><code>    git clone https://github.com/mikolajborowski/WSBGroupProject.git
+    cd WSBGroupProject
+    composer install 
+    touch .env
+    cp .env.example .env 
+    touch database/database.sqlite
+    php artisan migrate 
+    npm install 
+    npm run dev 
+    php artisan serve 
+    Site available on http://127.0.0.1:8000/
+</code></pre>
+<hr>
+<h4>FOR FRONT END</h4>
+<p>React is set up and ready in .\resources\js
+Component mount .\resources\views\welcome.blade.php</p>
+<hr>
+<h4>REST API</h4>
+<h6>Authentication</h6>
+<hr>
+<ol>
+<li>Register
+METHOD: POST
 Endpoint : 127.0.0.1:8000/api/register
 Payload (Form data):
 name: {user}
 email: {email}
 password: {password}
 password_confirmation: {password}
-Return: 
-```
-{
+Return:</li>
+</ol>
+<pre><code>{
     "user": {
         "name": {user},
         "email": {email},
@@ -75,31 +70,31 @@ Return:
     },
     "token": {token}
 }
-```
-
----
-
-2. Login 
+</code></pre>
+<hr>
+<ol start="2">
+<li>Login
 Endpoint : 127.0.0.1:8000/api/login
 Method: POST
 Payload (Form data):
 email: {email}
 password: {password}
-Return:
-```
-{
+Return:</li>
+</ol>
+<pre><code>{
     "token": {token}
 }
-```
-###### User
-1. Get info about user
+</code></pre>
+<h6>User</h6>
+<ol>
+<li>Get info about user
 Endpoint : 127.0.0.1:8000/api/user
 Method: GET
 HEADERS:
 Authorization: Bearer {token}
-Return:
-```
-{
+Return:</li>
+</ol>
+<pre><code>{
     "user": {
         "id": {id},
         "name": {name},
@@ -110,10 +105,10 @@ Return:
         "updated_at": {date}
     }
 }
-```
----
-
-2. Update info about user 
+</code></pre>
+<hr>
+<ol start="2">
+<li>Update info about user
 Endpoint : 127.0.0.1:8000/api/user
 Method: POST
 HEADERS:
@@ -121,9 +116,9 @@ Authorization: Bearer {token}
 Payload (Form data):
 name: {name}
 email: {email}
-Return:
-```
-{
+Return:</li>
+</ol>
+<pre><code>{
     "user": {
         "id": {id},
         "name": {updated name},
@@ -134,17 +129,18 @@ Return:
         "updated_at": {date}
     }
 }
-```
----
-#### RSS channels
-1. Get all channels 
+</code></pre>
+<hr>
+<h4>RSS channels</h4>
+<ol>
+<li>Get all channels
 Endpoint : 127.0.0.1:8000/api/rss
 Method: GET
 HEADERS:
 Authorization: Bearer {token}
-Return: 
-```
-{
+Return:</li>
+</ol>
+<pre><code>{
 
 }
-```
+</code></pre>
