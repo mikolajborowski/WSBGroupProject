@@ -144,3 +144,28 @@ Return:</li>
 
 }
 </code></pre>
+
+
+<hr>
+<h4>ADMIN</h4>
+<ol>
+<h5>Rule: when database is empty admin is user with id 1!</h5><br/>
+<li>Set user as admin<br/>
+Endpoint : 127.0.0.1:8000/api/admin/set <br/>
+Method: POST <br/>
+HEADERS: <br/>
+Authorization: Bearer {token} <br/>
+Payload (Form data): <br/>
+id: {id} <br/>
+Return: Information about permission. <br/>
+
+<li>Delete user as admin<br/>
+Endpoint : 127.0.0.1:8000/api/user/delete <br/>
+Method: POST <br/>
+HEADERS: <br/>
+Authorization: Bearer {token} <br/>
+Payload (Form data): <br/>
+id: {id} <br/>
+Return: info. 
+
+
