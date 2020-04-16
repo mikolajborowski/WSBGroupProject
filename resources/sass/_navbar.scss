@@ -1,0 +1,14 @@
+@import 'variables';
+
+.nav-item .dropdown-item {
+    color: #fff;
+    &:hover, &:focus {
+        background-color: $indigo;
+    }
+
+    &.logout {
+        &:hover, &:focus {
+            background-color: $orange;
+        }
+    }
+}

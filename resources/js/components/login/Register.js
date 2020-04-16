@@ -1,7 +1,7 @@
 import React, {Component } from 'React';
-import { register } from './LoginFunctions';
-
-export class Login extends Component {
+import { register } from '../../api/login';
+import { Link } from 'react-router-dom';
+export default class Login extends Component {
     constructor() {
         super();
         this.state = {
@@ -47,7 +47,7 @@ export class Login extends Component {
         
         render() {
             return (
-                <div class="container">
+                <div className="container">
                     <div className="row">
                         <div className="col-md-6 mt-5 mx-auto">
                             <form noValidate onSubmit={this.onSubmit}>
@@ -95,12 +95,15 @@ export class Login extends Component {
                                         Register
                                 </button>
                             </form>
+                            <div className="col-md-6 mx-auto mt-1 text-center">
+                                <Link to="/login">
+                                    Login
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
             )
         }
     }
-}
 
-export default register;

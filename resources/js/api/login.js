@@ -9,7 +9,7 @@ export const register = async user => {
                 }
             });
         localStorage.setItem('usertoken', response.data.token);
-        return console.log(response);
+        // return console.log(response);
     }
     catch (error) {
         return console.error(error);
@@ -28,24 +28,10 @@ export const login = async user => {
                 }
             });
         localStorage.setItem('usertoken', response.data.token);
-        return console.log(response);
+        // return console.log(response);
     }
     catch (error) {
         return console.error(error);
     }
 }
 
-export const getUser = async () => {
-    try {
-        const response = await axios
-            .get('api/user', {
-                headers: {
-                    Authorization: `Bearer ${localStorage.usertoken}`
-                }
-            });
-        return console.log(response);
-    }
-    catch (error) {
-        return console.error(error);
-    }
-}

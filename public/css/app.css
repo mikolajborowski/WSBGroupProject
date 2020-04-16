@@ -10882,3 +10882,29 @@ a.text-dark:focus {
   }
 }
 
+.nav-item .dropdown-item {
+  color: #fff;
+}
+
+.nav-item .dropdown-item:hover,
+.nav-item .dropdown-item:focus {
+  background-color: #6574cd;
+}
+
+.nav-item .dropdown-item.logout:hover,
+.nav-item .dropdown-item.logout:focus {
+  background-color: #f6993f;
+}
+
+.rss-link-button {
+  margin: 16px auto 0;
+}
+
+.go-to-link {
+  margin-top: 12px;
+}
+
+.edit-label {
+  margin-top: 7px;
+}
+

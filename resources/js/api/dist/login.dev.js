@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.user = exports.login = exports.register = void 0;
+exports.login = exports.register = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -83,37 +83,3 @@ var login = function login(user) {
 };
 
 exports.login = login;
-
-var user = function user() {
-  var response;
-  return regeneratorRuntime.async(function user$(_context3) {
-    while (1) {
-      switch (_context3.prev = _context3.next) {
-        case 0:
-          _context3.prev = 0;
-          _context3.next = 3;
-          return regeneratorRuntime.awrap(_axios["default"].get('api/user', {
-            headers: {
-              Authorization: "Bearer ".concat(localStorage.usertoken)
-            }
-          }));
-
-        case 3:
-          response = _context3.sent;
-          console.log(response);
-          return _context3.abrupt("return", response.data);
-
-        case 8:
-          _context3.prev = 8;
-          _context3.t0 = _context3["catch"](0);
-          console.log(_context3.t0);
-
-        case 11:
-        case "end":
-          return _context3.stop();
-      }
-    }
-  }, null, null, [[0, 8]]);
-};
-
-exports.user = user;

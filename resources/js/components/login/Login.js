@@ -1,7 +1,8 @@
 import React, {Component } from 'React';
-import { login } from './LoginFunctions';
+import { login } from '../../api/login';
+import { Link } from 'react-router-dom';
 
-export class Login extends Component {
+export default class Login extends Component {
     constructor() {
         super();
         this.state = {
@@ -33,15 +34,16 @@ export class Login extends Component {
                 this.props.history.push('/user')
             }
         })
+    }
         
         render() {
             return (
-                <div class="container">
+                <div className="container">
                     <div className="row">
                         <div className="col-md-6 mt-5 mx-auto">
                             <form noValidate onSubmit={this.onSubmit}>
                                 <h1 className="h3 mb-3">
-                                    Sign in:
+                                    Login:
                                 </h1>
                                 <div className="form-group">
                                     <label htmlFor="email">Email:</label>
@@ -66,12 +68,14 @@ export class Login extends Component {
                                         Login
                                 </button>
                             </form>
+                            <div className="col-md-6 mx-auto mt-1 text-center">
+                                <Link to="/register">
+                                   Register
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
             )
         }
     }
-}
-
-export default Login;
