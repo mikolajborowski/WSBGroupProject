@@ -204,5 +204,59 @@ Method: GET <br/>
 HEADERS: <br/>
 Authorization: Bearer {token} <br/>
 Return: List of users
+<br/>
+<hr>
+<h4> Channels groups </h4><br/>
+
+<li>Add group<br/>
+Endpoint : 127.0.0.1:8000/api/group/add <br/>
+Method: POST <br/>
+HEADERS: <br/>
+Authorization: Bearer {token} <br/>
+FORM DATA: <br/>
+name: {name} <br/>
+Return: all user groups with records in each group<br/>
+
+<li>Rename group<br/>
+Endpoint : 127.0.0.1:8000/api/group/rename <br/>
+Method: POST <br/>
+HEADERS: <br/>
+Authorization: Bearer {token} <br/>
+new_name: {name} <br/>
+group_id: {id} <br/>
+Return: all user groups with records in each group <br/>
+
+<li>Add channel to group<br/>
+Endpoint : 127.0.0.1:8000/api/group/add/channel <br/>
+Method: POST <br/>
+HEADERS: <br/>
+Authorization: Bearer {token} <br/>
+group_id: {id} <br/>
+channel_id: {id} <br/>
+Return: all user groups with records in each group <br/>
+
+<li>Get all groups<br/>
+Endpoint : 127.0.0.1:8000/api/group/all <br/>
+Method: GET <br/>
+HEADERS: <br/>
+Authorization: Bearer {token} <br/>
+Return: all user groups with records in each group <br/>
+
+<li>Delete channel from group<br/>
+Endpoint : 127.0.0.1:8000/api/group/delete/channel <br/>
+Method: POST <br/>
+HEADERS: <br/>
+Authorization: Bearer {token} <br/>
+channel_group_id: {id} <br/>
+Return: all user groups with records in each group <br/>
+
+<li>Delete group<br/>
+Endpoint : 127.0.0.1:8000/api/group/delete <br/>
+Method: POST <br/>
+HEADERS: <br/>
+Authorization: Bearer {token} <br/>
+group_id: {id} <br/>
+Return: all user groups with records in each group <br/>
+
 
 

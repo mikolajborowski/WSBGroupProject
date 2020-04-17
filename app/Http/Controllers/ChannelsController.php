@@ -22,7 +22,11 @@ class ChannelsController extends Controller
             'name' => $request->get('name'),
             'link' => $request->get('link'),
         ]);
-        return response()->json(Channels::all());
+        return response()->json(
+            DB::table('channels')
+            ->where('user_id', $user['id'])
+            ->get()
+        );
     }
 
     public function getListOfChannels(){
@@ -41,7 +45,11 @@ class ChannelsController extends Controller
             return response()->json('Permission denied!');
         }
         $channel->delete();
-        return response()->json(Channels::all());
+        return response()->json(
+            DB::table('channels')
+            ->where('user_id', $user['id'])
+            ->get()
+        );
     }
 
     public function returnChannelsContent(){
