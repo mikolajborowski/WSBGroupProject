@@ -8,7 +8,8 @@ export default class Login extends Component {
         this.state = {
             email: '',
             password: '',
-            errors: {}
+            errors: {
+            }
         }
 
         this.onChange = this.onChange.bind(this);
@@ -33,7 +34,7 @@ export default class Login extends Component {
             if (response) {
                 this.props.history.push('/user')
             }
-        })
+        });
     }
         
         render() {

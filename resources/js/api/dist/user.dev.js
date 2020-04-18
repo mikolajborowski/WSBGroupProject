@@ -25,34 +25,53 @@ var getUser = function getUser() {
 
         case 3:
           response = _context.sent;
-          console.log(response);
           return _context.abrupt("return", response.data);
 
-        case 8:
-          _context.prev = 8;
+        case 7:
+          _context.prev = 7;
           _context.t0 = _context["catch"](0);
           console.log(_context.t0);
 
-        case 11:
+        case 10:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[0, 8]]);
+  }, null, null, [[0, 7]]);
 };
 
 exports.getUser = getUser;
 
-var postUser = function postUser() {
+var postUser = function postUser(userData) {
+  var response;
   return regeneratorRuntime.async(function postUser$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
+          _context2.prev = 0;
+          _context2.next = 3;
+          return regeneratorRuntime.awrap(_axios["default"].post('api/user', userData, {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: "Bearer ".concat(localStorage.usertoken)
+            }
+          }));
+
+        case 3:
+          response = _context2.sent;
+          return _context2.abrupt("return", response.data);
+
+        case 7:
+          _context2.prev = 7;
+          _context2.t0 = _context2["catch"](0);
+          console.log(_context2.t0);
+
+        case 10:
         case "end":
           return _context2.stop();
       }
     }
-  });
+  }, null, null, [[0, 7]]);
 };
 
 exports.postUser = postUser;

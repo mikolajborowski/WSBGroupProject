@@ -14,7 +14,6 @@ export default class UserProfile extends Component {
 
     componentDidMount() {
         getUser().then(response => {
-            console.log(response)
             this.setState({
                 name: response.user.name,
                 email: response.user.email

@@ -9,10 +9,10 @@ export const register = async user => {
                 }
             });
         localStorage.setItem('usertoken', response.data.token);
-        // return console.log(response);
+        return response;
     }
     catch (error) {
-        return console.error(error);
+        console.log(error)
     }
 }
 
@@ -28,10 +28,10 @@ export const login = async user => {
                 }
             });
         localStorage.setItem('usertoken', response.data.token);
-        // return console.log(response);
+        return response;
     }
     catch (error) {
-        return console.error(error);
+        console.error(error);
     }
 }
 

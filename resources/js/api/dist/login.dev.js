@@ -25,22 +25,20 @@ var register = function register(user) {
 
         case 3:
           response = _context.sent;
-          localStorage.setItem('usertoken', response.data.token); // return console.log(response);
+          localStorage.setItem('usertoken', response.data.token);
+          return _context.abrupt("return", response);
 
-          _context.next = 10;
-          break;
-
-        case 7:
-          _context.prev = 7;
+        case 8:
+          _context.prev = 8;
           _context.t0 = _context["catch"](0);
-          return _context.abrupt("return", console.error(_context.t0));
+          console.log(_context.t0);
 
-        case 10:
+        case 11:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[0, 7]]);
+  }, null, null, [[0, 8]]);
 };
 
 exports.register = register;
@@ -64,22 +62,20 @@ var login = function login(user) {
 
         case 3:
           response = _context2.sent;
-          localStorage.setItem('usertoken', response.data.token); // return console.log(response);
+          localStorage.setItem('usertoken', response.data.token);
+          return _context2.abrupt("return", response);
 
-          _context2.next = 10;
-          break;
-
-        case 7:
-          _context2.prev = 7;
+        case 8:
+          _context2.prev = 8;
           _context2.t0 = _context2["catch"](0);
-          return _context2.abrupt("return", console.error(_context2.t0));
+          console.error(_context2.t0);
 
-        case 10:
+        case 11:
         case "end":
           return _context2.stop();
       }
     }
-  }, null, null, [[0, 7]]);
+  }, null, null, [[0, 8]]);
 };
 
 exports.login = login;

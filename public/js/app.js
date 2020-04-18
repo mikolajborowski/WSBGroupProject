@@ -72316,22 +72316,20 @@ var register = /*#__PURE__*/function () {
 
           case 3:
             response = _context.sent;
-            localStorage.setItem('usertoken', response.data.token); // return console.log(response);
+            localStorage.setItem('usertoken', response.data.token);
+            return _context.abrupt("return", response);
 
-            _context.next = 10;
-            break;
-
-          case 7:
-            _context.prev = 7;
+          case 8:
+            _context.prev = 8;
             _context.t0 = _context["catch"](0);
-            return _context.abrupt("return", console.error(_context.t0));
+            console.log(_context.t0);
 
-          case 10:
+          case 11:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 7]]);
+    }, _callee, null, [[0, 8]]);
   }));
 
   return function register(_x) {
@@ -72358,22 +72356,20 @@ var login = /*#__PURE__*/function () {
 
           case 3:
             response = _context2.sent;
-            localStorage.setItem('usertoken', response.data.token); // return console.log(response);
+            localStorage.setItem('usertoken', response.data.token);
+            return _context2.abrupt("return", response);
 
-            _context2.next = 10;
-            break;
-
-          case 7:
-            _context2.prev = 7;
+          case 8:
+            _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
-            return _context2.abrupt("return", console.error(_context2.t0));
+            console.error(_context2.t0);
 
-          case 10:
+          case 11:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 7]]);
+    }, _callee2, null, [[0, 8]]);
   }));
 
   return function login(_x2) {
@@ -72422,20 +72418,19 @@ var getUser = /*#__PURE__*/function () {
 
           case 3:
             response = _context.sent;
-            console.log(response);
             return _context.abrupt("return", response.data);
 
-          case 8:
-            _context.prev = 8;
+          case 7:
+            _context.prev = 7;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 11:
+          case 10:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 8]]);
+    }, _callee, null, [[0, 7]]);
   }));
 
   return function getUser() {
@@ -72443,19 +72438,39 @@ var getUser = /*#__PURE__*/function () {
   };
 }();
 var postUser = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(userData) {
+    var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('api/user', userData, {
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: "Bearer ".concat(localStorage.usertoken)
+              }
+            });
+
+          case 3:
+            response = _context2.sent;
+            return _context2.abrupt("return", response.data);
+
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+            console.log(_context2.t0);
+
+          case 10:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2);
+    }, _callee2, null, [[0, 7]]);
   }));
 
-  return function postUser() {
+  return function postUser(_x) {
     return _ref2.apply(this, arguments);
   };
 }();
@@ -72921,12 +72936,16 @@ var Rss = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "jumbotron mt-5"
+        className: "jumbotron mt-3"
       }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-sm-8 mx-auto"
       }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "text-center"
-      }, "Rss App"))));
+      }, "Rss App"))), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container"
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      })));
     }
   }]);
 
@@ -73085,11 +73104,19 @@ var Login = /*#__PURE__*/function (_Component) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Login; });
-/* harmony import */ var React__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! React */ "./node_modules/React/index.js");
-/* harmony import */ var React__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(React__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _api_login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../api/login */ "./resources/js/api/login.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var React__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! React */ "./node_modules/React/index.js");
+/* harmony import */ var React__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(React__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _api_login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/login */ "./resources/js/api/login.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -73132,7 +73159,13 @@ var Login = /*#__PURE__*/function (_Component) {
       name: '',
       email: '',
       password: '',
-      password_confirmation: ''
+      passwordConfirmation: '',
+      errors: {
+        name: '',
+        email: '',
+        password: '',
+        passwordConfirmation: ''
+      }
     };
     _this.onChange = _this.onChange.bind(_assertThisInitialized(_this));
     _this.onSubmit = _this.onSubmit.bind(_assertThisInitialized(_this));
@@ -73140,107 +73173,199 @@ var Login = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(Login, [{
-    key: "onChange",
-    value: function onChange(event) {
-      this.setState(_defineProperty({}, event.target.name, event.target.value));
+    key: "checkIfFieldsFilled",
+    value: function checkIfFieldsFilled(fieldNames) {
+      var _this2 = this;
+
+      var allFilled = [];
+      fieldNames.forEach(function (field) {
+        return allFilled.push(_this2.state[field] !== '');
+      });
+      return !allFilled.includes(false);
     }
   }, {
-    key: "checkPasswordMatch",
-    value: function checkPasswordMatch(password, confirmation) {
-      return password && confirmation && password === confirmation;
+    key: "validateForm",
+    value: function validateForm(errors) {
+      var noErrors = true;
+      var allFieldsFilled = this.checkIfFieldsFilled(['name', 'email', 'password', 'passwordConfirmation']);
+      Object.values(errors).forEach(function (val) {
+        return val.length > 0 && (noErrors = false);
+      });
+      var formValid = noErrors && allFieldsFilled;
+      return formValid;
+    }
+  }, {
+    key: "onChange",
+    value: function onChange(event) {
+      event.preventDefault();
+      var _event$target = event.target,
+          name = _event$target.name,
+          value = _event$target.value;
+      var errors = this.state.errors;
+      var emailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+
+      switch (name) {
+        case 'name':
+          errors.name = value.length < 3 ? 'Username must contain at least 3 characters' : '';
+          break;
+
+        case 'email':
+          errors.email = emailRegex.test(value) ? '' : 'Please enter valid email address';
+          break;
+
+        case 'password':
+          errors.password = value.length < 6 ? 'Your password must contain at least 6 characters' : '';
+          break;
+
+        case 'passwordConfirmation':
+          errors.passwordConfirmation = !this.state.password || !this.state.passwordConfirmation || value !== this.state.password ? 'Passwords do not match' : '';
+          break;
+
+        default:
+          break;
+      }
+
+      this.setState(_defineProperty({
+        errors: errors
+      }, name, value));
+    }
+  }, {
+    key: "isFormValid",
+    value: function isFormValid() {
+      return this.validateForm(this.state.errors);
     }
   }, {
     key: "onSubmit",
     value: function onSubmit(event) {
-      var _this2 = this;
-
       event.preventDefault();
       var user = {
         name: this.state.name,
         email: this.state.email,
         password: this.state.password,
-        password_confirmation: this.state.password_confirmation
+        password_confirmation: this.state.passwordConfirmation
       };
 
-      if (this.checkPasswordMatch(this.state.password, this.state.password_confirmation)) {
-        Object(_api_login__WEBPACK_IMPORTED_MODULE_1__["register"])(user).then(function (response) {
+      if (this.isFormValid()) {
+        try {
+          var response = /*#__PURE__*/function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+                while (1) {
+                  switch (_context.prev = _context.next) {
+                    case 0:
+                      _context.next = 2;
+                      return Object(_api_login__WEBPACK_IMPORTED_MODULE_2__["register"])(user);
+
+                    case 2:
+                      return _context.abrupt("return", _context.sent);
+
+                    case 3:
+                    case "end":
+                      return _context.stop();
+                  }
+                }
+              }, _callee);
+            }));
+
+            return function response() {
+              return _ref.apply(this, arguments);
+            };
+          }();
+
           if (response) {
-            _this2.props.history.push('/login');
+            this.props.history.push('/login');
           }
-        });
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        console.error('Error: Invalid form validation');
       }
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "container"
-      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "row"
-      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "col-md-6 mt-5 mx-auto"
-      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
         noValidate: true,
         onSubmit: this.onSubmit
-      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
         className: "h3 mb-3"
-      }, "Register:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Register:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
-      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
         htmlFor: "name"
-      }, "Name:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Name:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
         type: "text",
         name: "name",
         placeholder: "Username",
         className: "form-control",
         value: this.state.name,
         onChange: this.onChange
-      })), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), this.state.errors.name.length > 0 && /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "error"
+      }, this.state.errors.name)), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
-      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
         htmlFor: "email"
-      }, "Email:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Email:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
         type: "email",
         name: "email",
         placeholder: "Email address",
         className: "form-control",
         value: this.state.email,
         onChange: this.onChange
-      })), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), this.state.errors.email.length > 0 && /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "error"
+      }, this.state.errors.email)), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
-      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
         htmlFor: "password"
-      }, "Password:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Password:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
         type: "password",
         name: "password",
         placeholder: "Password",
         className: "form-control",
         value: this.state.password,
         onChange: this.onChange
-      })), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), this.state.errors.password.length > 0 && /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "error"
+      }, this.state.errors.password)), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
-      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
         htmlFor: "password"
-      }, "Confirm password:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Confirm password:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
         type: "password",
-        name: "password_confirmation",
+        name: "passwordConfirmation",
         placeholder: "Confirm assword",
         className: "form-control",
-        value: this.state.password_confirmation,
+        value: this.state.passwordConfirmation,
         onChange: this.onChange
-      })), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), this.state.errors.passwordConfirmation.length > 0 && /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "error"
+      }, this.state.errors.passwordConfirmation)), this.isFormValid() ? /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
         type: "submit",
+        "data-toggle": "modal",
+        "data-target": "#regModal",
         className: "btn btn-primary btn-block btn-lg"
-      }, "Register")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Register") : /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        className: "btn btn-secondary btn-block btn-lg",
+        disabled: true
+      }, "Register")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "col-md-6 mx-auto mt-1 text-center"
-      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: "/login"
       }, "Login")))));
     }
   }]);
 
   return Login;
-}(React__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+}(React__WEBPACK_IMPORTED_MODULE_1__["Component"]);
 
 
 
@@ -73261,6 +73386,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api_user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../api/user */ "./resources/js/api/user.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -73301,8 +73428,14 @@ var UserEdit = /*#__PURE__*/function (_Component) {
       name: '',
       email: '',
       newName: '',
-      newEmail: ''
+      newEmail: '',
+      errors: {
+        newName: '',
+        newEmail: ''
+      }
     };
+    _this.onChange = _this.onChange.bind(_assertThisInitialized(_this));
+    _this.onClickSubmit = _this.onClickSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -73317,6 +73450,64 @@ var UserEdit = /*#__PURE__*/function (_Component) {
           email: response.user.email
         });
       });
+    }
+  }, {
+    key: "validNewDataFields",
+    value: function validNewDataFields() {
+      var _this3 = this;
+
+      var allFilled = !['newName', 'newEmail'].map(function (field) {
+        return _this3.state[field] !== '';
+      }).includes(false);
+      var noErrors = true;
+      Object.values(this.state.errors).forEach(function (val) {
+        return val.length > 0 && (noErrors = false);
+      });
+      return allFilled && noErrors;
+    }
+  }, {
+    key: "onChange",
+    value: function onChange(event) {
+      event.preventDefault();
+      var _event$target = event.target,
+          name = _event$target.name,
+          value = _event$target.value;
+      var errors = this.state.errors;
+      var emailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+
+      switch (name) {
+        case 'newName':
+          errors.newName = value.length < 3 ? 'Username must contain at least 3 characters' : '';
+          break;
+
+        case 'newEmail':
+          errors.newEmail = emailRegex.test(value) ? '' : 'Please enter valid email address';
+          break;
+
+        default:
+          break;
+      }
+
+      this.setState(_defineProperty({
+        errors: errors
+      }, name, value));
+    }
+  }, {
+    key: "onClickSubmit",
+    value: function onClickSubmit(event) {
+      var _this4 = this;
+
+      event.preventDefault();
+      var userData = {
+        name: this.state.newName,
+        email: this.state.newEmail
+      };
+
+      if (this.validNewDataFields()) {
+        Object(_api_user__WEBPACK_IMPORTED_MODULE_1__["postUser"])(userData).then(function (response) {
+          return _this4.props.history.push('/user');
+        });
+      }
     }
   }, {
     key: "render",
@@ -73337,11 +73528,15 @@ var UserEdit = /*#__PURE__*/function (_Component) {
         className: "input-group mb-3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
+        name: "newName",
         className: "form-control",
-        placeholder: this.state.name,
+        placeholder: "New username",
         "aria-label": "Username",
-        "aria-describedby": "basic-addon1"
-      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "aria-describedby": "basic-addon1",
+        onChange: this.onChange
+      }), this.state.errors.newName.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "error"
+      }, this.state.errors.newName)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-label"
       }, "Email:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "input-group mb-3"
@@ -73352,17 +73547,23 @@ var UserEdit = /*#__PURE__*/function (_Component) {
         id: "basic-addon1"
       }, "@")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "email",
+        name: "newEmail",
         className: "form-control",
-        placeholder: this.state.email,
+        placeholder: "New email address",
         "aria-label": "Email",
-        "aria-describedby": "basic-addon1"
-      })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "aria-describedby": "basic-addon1",
+        onChange: this.onChange
+      }), this.state.errors.newEmail.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "error"
+      }, this.state.errors.newEmail)))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "text-center col-md-6 mx-auto"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        to: "/user"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-primary btn-lg edit"
-      }, "Save")))));
+      }, this.validNewDataFields() ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-primary btn-lg edit",
+        onClick: this.onClickSubmit
+      }, "Save") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-secondary btn-lg edit",
+        disabled: true
+      }, "Save"))));
     }
   }]);
 
@@ -73437,8 +73638,6 @@ var UserProfile = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       Object(_api_user__WEBPACK_IMPORTED_MODULE_1__["getUser"])().then(function (response) {
-        console.log(response);
-
         _this2.setState({
           name: response.user.name,
           email: response.user.email

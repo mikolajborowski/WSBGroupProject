@@ -6,7 +6,6 @@ export const getUser =  async () => {
             .get('api/user', {
                 headers: { Authorization: `Bearer ${localStorage.usertoken}` }
             });
-        console.log(response);
         return response.data;
     }
     catch (err) {
@@ -14,4 +13,17 @@ export const getUser =  async () => {
     }
 }
 
-export const postUser = async () => {};
+export const postUser = async (userData) => {
+    try {
+        const response = await axios
+            .post('api/user', userData, {
+                headers: { 
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${localStorage.usertoken}` }
+            });
+        return response.data;
+    }
+    catch (err) {
+        console.log(err);
+    }
+};
