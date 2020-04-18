@@ -3,15 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getChannelsHTML = exports.getChannelsList = exports.deleteChannel = exports.postChannels = void 0;
+exports.getChannelsHTML = exports.getChannelsList = exports.deleteChannel = exports.postChannel = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var postChannels = function postChannels(channels) {
+var postChannel = function postChannel(channels) {
   var response;
-  return regeneratorRuntime.async(function postChannels$(_context) {
+  return regeneratorRuntime.async(function postChannel$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
@@ -42,7 +42,7 @@ var postChannels = function postChannels(channels) {
   }, null, null, [[0, 8]]);
 };
 
-exports.postChannels = postChannels;
+exports.postChannel = postChannel;
 
 var deleteChannel = function deleteChannel(id) {
   var response;

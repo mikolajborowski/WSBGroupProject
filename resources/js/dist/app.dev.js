@@ -21,10 +21,14 @@ require('./components/user/UserProfile');
 
 require('./components/user/UserEdit');
 
-require('./components/Navbar');
+require('./components/utils/Navbar');
 
 require('./components/LandingPage');
 
-require('./components/Rss');
+require('./components/rss/Rss');
+
+require('./components/rss/AddRss');
+
+require('./components/rss/ManageRss');
 
 require('./components/Main'); // require('./components/Example');

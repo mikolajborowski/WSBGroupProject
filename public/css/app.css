@@ -10882,6 +10882,17 @@ a.text-dark:focus {
   }
 }
 
+.go-back {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .btn:not(.btn-remove) {
+    margin-top: 16px;
+    min-width: 220px;
+  }
+}
+
 .nav-item .dropdown-item {
   color: #fff;
 }

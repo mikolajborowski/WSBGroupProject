@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const postChannels = async channels => {
+export const postChannel = async channels => {
     try {
         const response = await axios
             .post('api/channels/save', channels, {

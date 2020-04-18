@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import {getUser} from '../../api/user';
 import {Link} from 'react-router-dom';
-
-
+import GoBack from '../utils/GoBack';
 export default class UserProfile extends Component {
     constructor() {
         super()
         this.state = {
             name: '',
-            email: ''
+            email: '',
         }
     }
 
@@ -24,6 +23,7 @@ export default class UserProfile extends Component {
     render() {
         return (
             <div className="container">
+                <GoBack onClick={() => this.props.history.goBack()} /> 
                 <div className="jumbotron mt-5">
                     <div className="col-sm-12 mx-auto">
                         <h1 className="text-center">User Profile</h1>
@@ -41,7 +41,7 @@ export default class UserProfile extends Component {
                         </tbody>
                     </table>
                     <div className="text-center col-md-6 mx-auto">
-                        <Link to="/user-edit">
+                        <Link to="/edit-user">
                             <button className="btn btn-primary btn-lg edit">Edit</button>
                         </Link>
                     </div>
