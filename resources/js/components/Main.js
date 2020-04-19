@@ -39,7 +39,6 @@ export default class Main extends Component {
                         <Route exact path="/rss" component={Rss} />
                         <Route exact path="/rss-list" component={ManageRss} />
                         <Route exact path="/rss-format" component={FormattedRssList} />
-                        {/* <Route exact path="/admin" component={} /> */}
                         {/* <Route exact path="/groups" component={} /> */}
                     </div>
                 </div>

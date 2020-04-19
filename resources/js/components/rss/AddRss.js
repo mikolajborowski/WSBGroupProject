@@ -75,8 +75,8 @@ export default class AddRss extends Component {
     render() {
         return (
             <div className="container">
-                <div className="row col-md-11 mt-3 mx-auto">
-                    <div className="card mx-auto col-md-10 mt-3">
+                <div className="row col-md-11 mt-3 mb-5 mx-auto">
+                    <div className="card mx-auto col-md-10 mb-5 mt-3">
                         <div className="card-header text-center">
                             Add new RSS
                         </div>

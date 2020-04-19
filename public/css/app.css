@@ -10887,7 +10887,7 @@ a.text-dark:focus {
 }
 
 @media screen and (min-width: 768px) {
-  .btn:not(.btn-remove) {
+  .btn:not(.btn-small) {
     margin-top: 16px;
     min-width: 220px;
   }

@@ -14,7 +14,7 @@ export default class RssListElement extends Component {
                 </div>
                 <button
                     onClick={this.props.onClick}
-                    className="btn btn-remove btn-sm btn-danger"
+                    className="btn btn-small btn-sm btn-danger"
                     data-rssid={this.props.id}
                 >
                     Remove

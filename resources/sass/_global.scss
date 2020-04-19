@@ -5,7 +5,7 @@
 
 .btn {
     @media screen and (min-width: 768px) {
-        &:not(.btn-remove) {
+        &:not(.btn-small) {
             margin-top: 16px;
             min-width: 220px;
         }

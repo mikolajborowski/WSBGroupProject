@@ -1,15 +1,14 @@
 import axios from 'axios';
 
-export const setAdmin = async user => {
+export const setAdmin = async id => {
     try {
         const response = await axios
-            .post(`api/admin/set/${user.id}`, user, {
+            .post(`api/admin/set/${id}`, id, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${localStorage.usertoken}`
                 }
             });
-        console.log(response);
         return response;
     } catch (error) {
         console.log(error)

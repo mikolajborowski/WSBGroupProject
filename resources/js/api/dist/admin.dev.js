@@ -9,7 +9,7 @@ var _axios = _interopRequireDefault(require("axios"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var setAdmin = function setAdmin(user) {
+var setAdmin = function setAdmin(id) {
   var response;
   return regeneratorRuntime.async(function setAdmin$(_context) {
     while (1) {
@@ -17,7 +17,7 @@ var setAdmin = function setAdmin(user) {
         case 0:
           _context.prev = 0;
           _context.next = 3;
-          return regeneratorRuntime.awrap(_axios["default"].post("api/admin/set/".concat(user.id), user, {
+          return regeneratorRuntime.awrap(_axios["default"].post("api/admin/set/".concat(id), id, {
             headers: {
               'Content-Type': 'application/json',
               Authorization: "Bearer ".concat(localStorage.usertoken)
@@ -26,20 +26,19 @@ var setAdmin = function setAdmin(user) {
 
         case 3:
           response = _context.sent;
-          console.log(response);
           return _context.abrupt("return", response);
 
-        case 8:
-          _context.prev = 8;
+        case 7:
+          _context.prev = 7;
           _context.t0 = _context["catch"](0);
           console.log(_context.t0);
 
-        case 11:
+        case 10:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[0, 8]]);
+  }, null, null, [[0, 7]]);
 };
 
 exports.setAdmin = setAdmin;
