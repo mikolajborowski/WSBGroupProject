@@ -39,8 +39,8 @@ export const getAdminList = async () => {
                     Authorization: `Bearer ${localStorage.usertoken}`
                 }
             });
-        console.log(response)
-        return response;
+        console.log(response.data)
+        return response.data;
     } catch (error) {
         console.error(error);
     }

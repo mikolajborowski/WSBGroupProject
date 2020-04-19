@@ -93,8 +93,8 @@ var getAdminList = function getAdminList() {
 
         case 3:
           response = _context3.sent;
-          console.log(response);
-          return _context3.abrupt("return", response);
+          console.log(response.data);
+          return _context3.abrupt("return", response.data);
 
         case 8:
           _context3.prev = 8;

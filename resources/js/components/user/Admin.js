@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
-import SetUserAdmin from './SetUserAdmin';
-
+import React, { Component } from "react";
+import ShowAndManageAdminUsers from "./ShowAndManageAdminUsers";
 
 export default class Admin extends Component {
     constructor() {
@@ -10,13 +9,12 @@ export default class Admin extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="col-md-6 mx-auto">
-                       <SetUserAdmin />
-                </div>
-                <div className="text-center col-md-6 mx-auto">
-                    {/* collapse list of user admins */}
-                </div>
+                    <div className="lead text-center">
+                        Display, edit admin privledges and manage users
+                    </div>
+                    <hr />
+                    <ShowAndManageAdminUsers />
             </React.Fragment>
-        )
+        );
     }
 }

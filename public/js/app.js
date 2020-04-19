@@ -72391,8 +72391,8 @@ var getAdminList = /*#__PURE__*/function () {
 
           case 3:
             response = _context3.sent;
-            console.log(response);
-            return _context3.abrupt("return", response);
+            console.log(response.data);
+            return _context3.abrupt("return", response.data);
 
           case 8:
             _context3.prev = 8;
@@ -74160,7 +74160,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Admin; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _SetUserAdmin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SetUserAdmin */ "./resources/js/components/user/SetUserAdmin.js");
+/* harmony import */ var _ShowAndManageAdminUsers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ShowAndManageAdminUsers */ "./resources/js/components/user/ShowAndManageAdminUsers.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -74201,10 +74201,8 @@ var Admin = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-md-6 mx-auto"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SetUserAdmin__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "text-center col-md-6 mx-auto"
-      }));
+        className: "lead text-center"
+      }, "Display, edit admin privledges and manage users"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ShowAndManageAdminUsers__WEBPACK_IMPORTED_MODULE_1__["default"], null));
     }
   }]);
 
@@ -74215,22 +74213,22 @@ var Admin = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/components/user/SetUserAdmin.js":
-/*!******************************************************!*\
-  !*** ./resources/js/components/user/SetUserAdmin.js ***!
-  \******************************************************/
+/***/ "./resources/js/components/user/ShowAndManageAdminUsers.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/user/ShowAndManageAdminUsers.js ***!
+  \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SetUserAdmin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ShowAndManageAdminUsers; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _api_admin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../api/admin */ "./resources/js/api/admin.js");
+/* harmony import */ var _UserListElement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UserListElement */ "./resources/js/components/user/UserListElement.js");
+/* harmony import */ var _utils_Loading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/Loading */ "./resources/js/components/utils/Loading.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -74255,70 +74253,116 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var SetUserAdmin = /*#__PURE__*/function (_Component) {
-  _inherits(SetUserAdmin, _Component);
 
-  var _super = _createSuper(SetUserAdmin);
 
-  function SetUserAdmin() {
+var ShowAndManageAdminUsers = /*#__PURE__*/function (_Component) {
+  _inherits(ShowAndManageAdminUsers, _Component);
+
+  var _super = _createSuper(ShowAndManageAdminUsers);
+
+  function ShowAndManageAdminUsers() {
     var _this;
 
-    _classCallCheck(this, SetUserAdmin);
+    _classCallCheck(this, ShowAndManageAdminUsers);
 
     _this = _super.call(this);
     _this.state = {
-      userId: 1
+      loading: true,
+      users: []
     };
-    _this.onChange = _this.onChange.bind(_assertThisInitialized(_this));
+    _this.componentDidMount = _this.componentDidMount.bind(_assertThisInitialized(_this));
     _this.onClickSetUserAdmin = _this.onClickSetUserAdmin.bind(_assertThisInitialized(_this));
+    _this.onClickRemove = _this.onClickRemove.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  _createClass(SetUserAdmin, [{
-    key: "onChange",
-    value: function onChange(event) {
-      var _event$target = event.target,
-          name = _event$target.name,
-          value = _event$target.value;
-      var id = parseInt(value) || 1;
-      this.setState(_defineProperty({}, name, id));
+  _createClass(ShowAndManageAdminUsers, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      Object(_api_admin__WEBPACK_IMPORTED_MODULE_1__["getAdminList"])().then(function (users) {
+        if (users) {
+          _this2.setState({
+            users: users,
+            loading: false
+          });
+        }
+      });
+    }
+  }, {
+    key: "getUserId",
+    value: function getUserId(event) {
+      var dataset = event.target.dataset;
+      var id = dataset.userid;
+      return id;
     }
   }, {
     key: "onClickSetUserAdmin",
     value: function onClickSetUserAdmin(event) {
       event.preventDefault();
-      Object(_api_admin__WEBPACK_IMPORTED_MODULE_1__["setAdmin"])(this.state.userId).then(function (response) {
+      var id = this.getUserId(event);
+      Object(_api_admin__WEBPACK_IMPORTED_MODULE_1__["setAdmin"])(id).then(function (response) {
         return alert(response.data);
       })["catch"](function (error) {
         return alert("User with provided ID does not exist");
       });
     }
   }, {
+    key: "onClickRemove",
+    value: function onClickRemove(event) {
+      var _this3 = this;
+
+      event.preventDefault();
+      var id = this.getUserId(event);
+      Object(_api_admin__WEBPACK_IMPORTED_MODULE_1__["deleteAdmin"])(id).then(function (response) {
+        if (response) {
+          var users = _this3.state.users.filter(function (user) {
+            return user.id !== id;
+          });
+
+          _this3.setState({
+            users: users
+          });
+
+          alert(response.data);
+        }
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "lead text-center"
-      }, "Add new admin privledges"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "d-flex justify-content-center align-items-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "User ID:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "input-group col-sm-4 flex-column"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "number",
-        min: "1",
-        name: "userId",
-        className: "form-control",
-        placeholder: "ID",
-        "aria-label": "UserId",
-        "aria-describedby": "basic-addon1",
-        onChange: this.onChange
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.onClickSetUserAdmin,
-        className: "btn btn-small btn-primary btn-sm"
-      }, "Save")));
+      var _this4 = this;
+
+      var showUsers = this.state.users.map(function (user) {
+        console.log(user);
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UserListElement__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          key: user.id,
+          id: user.id,
+          admin: parseInt(user.is_user_admin) ? "admin" : "user",
+          email: user.email,
+          name: user.name,
+          onClickSetAsAdmin: _this4.onClickSetUserAdmin,
+          onClickRemove: _this4.onClickRemove
+        });
+      });
+
+      if (this.state.loading) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_Loading__WEBPACK_IMPORTED_MODULE_3__["default"], null);
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+          style: {
+            background: "transparent"
+          },
+          className: "table table-bordered table-hover"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, showUsers)));
+      }
     }
   }]);
 
-  return SetUserAdmin;
+  return ShowAndManageAdminUsers;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
@@ -74517,6 +74561,90 @@ var UserEdit = /*#__PURE__*/function (_Component) {
   }]);
 
   return UserEdit;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/user/UserListElement.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/user/UserListElement.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return UserListElement; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var UserListElement = /*#__PURE__*/function (_Component) {
+  _inherits(UserListElement, _Component);
+
+  var _super = _createSuper(UserListElement);
+
+  function UserListElement() {
+    _classCallCheck(this, UserListElement);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(UserListElement, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+        style: {
+          background: "transparent"
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        scope: "row",
+        className: "lead"
+      }, this.props.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        className: "lead"
+      }, this.props.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        className: "lead"
+      }, this.props.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        className: "lead"
+      }, this.props.admin), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        className: "d-flex justify-content-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-teal btn-sm mr-2 btn-small",
+        "data-userid": this.props.id,
+        onClick: this.props.onClickSetAsAdmin
+      }, "Set as admin"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-danger btn-sm btn-small",
+        "data-userid": this.props.id,
+        onClick: this.props.onClickRemove
+      }, "Remove user")));
+    }
+  }]);
+
+  return UserListElement;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
