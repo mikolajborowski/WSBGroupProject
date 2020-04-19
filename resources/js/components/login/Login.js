@@ -33,6 +33,8 @@ export default class Login extends Component {
         login(user).then(response => {
             if (response) {
                 this.props.history.push('/user')
+            } else {
+                alert("Login error. Please try again")
             }
         });
     }

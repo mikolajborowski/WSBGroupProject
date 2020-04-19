@@ -85,18 +85,21 @@ export default class Login extends Component {
             password_confirmation: this.state.passwordConfirmation
         };
         if (this.isFormValid()) {
-            try {
-                const response = async () => await register(user);
-                if (response) {
-                    this.props.history.push("/login");
-                    alert(`Registration successfull.
-                    User: ${user.name}, login: ${user.password}`);
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        } else {
-            console.error("Error: Invalid form validation");
+            register(user)
+                .then(response => {
+                    if (response) {
+                        this.props.history.push("/login");
+                        console.log(response)
+                        alert(
+                            `Registration successfull. User: ${user.name}, login: ${user.password}`
+                        );
+                    } else {
+                        alert("Registration failed. Email already taken. Please try again");
+                    }
+                })
+                .catch(error =>
+                    console.error("Error: Invalid form validation", error)
+                );
         }
     }
 

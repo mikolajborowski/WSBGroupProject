@@ -40,22 +40,24 @@ export default class ShowAndManageAdminUsers extends Component {
     onClickRemove(event) {
         event.preventDefault();
         const id = this.getUserId(event);
+        const users = this.state.users.filter(user => user.id !== id);
+        console.log('before', this.state.users)
+
+        this.setState({ users });
+
         deleteAdmin(id)
             .then(response => {
                 if (response) {
-                    const users = this.state.users.filter(
-                        user => user.id !== id
-                    );
-                    this.setState({ users });
                     alert(response.data);
                 }
             })
             .catch(error => console.log(error));
+
+            console.log('after', this.state.users)
     }
 
     render() {
         const showUsers = this.state.users.map(user => {
-            console.log(user)
             return (
                 <UserListElement
                     key={user.id}

@@ -73174,6 +73174,8 @@ var Login = /*#__PURE__*/function (_Component) {
       Object(_api_login__WEBPACK_IMPORTED_MODULE_1__["login"])(user).then(function (response) {
         if (response) {
           _this2.props.history.push('/user');
+        } else {
+          alert("Login error. Please try again");
         }
       });
     }
@@ -73241,20 +73243,12 @@ var Login = /*#__PURE__*/function (_Component) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Login; });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var React__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! React */ "./node_modules/React/index.js");
-/* harmony import */ var React__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(React__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _api_login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/login */ "./resources/js/api/login.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _services_formValidationService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/formValidationService */ "./resources/js/components/services/formValidationService.js");
-
-
+/* harmony import */ var React__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! React */ "./node_modules/React/index.js");
+/* harmony import */ var React__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(React__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api_login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../api/login */ "./resources/js/api/login.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _services_formValidationService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/formValidationService */ "./resources/js/components/services/formValidationService.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -73314,8 +73308,8 @@ var Login = /*#__PURE__*/function (_Component) {
   _createClass(Login, [{
     key: "isFormValid",
     value: function isFormValid() {
-      var allFilled = _services_formValidationService__WEBPACK_IMPORTED_MODULE_4__["default"].checkEmptyFields(["name", "email", "password", "passwordConfirmation"], this.state);
-      var noErrors = _services_formValidationService__WEBPACK_IMPORTED_MODULE_4__["default"].checkFormErrors(this.state.errors);
+      var allFilled = _services_formValidationService__WEBPACK_IMPORTED_MODULE_3__["default"].checkEmptyFields(["name", "email", "password", "passwordConfirmation"], this.state);
+      var noErrors = _services_formValidationService__WEBPACK_IMPORTED_MODULE_3__["default"].checkFormErrors(this.state.errors);
       return allFilled && noErrors;
     }
   }, {
@@ -73329,19 +73323,19 @@ var Login = /*#__PURE__*/function (_Component) {
 
       switch (name) {
         case "name":
-          errors.name = value.length < 3 ? _services_formValidationService__WEBPACK_IMPORTED_MODULE_4__["default"].validationMessage.nameLength : "";
+          errors.name = value.length < 3 ? _services_formValidationService__WEBPACK_IMPORTED_MODULE_3__["default"].validationMessage.nameLength : "";
           break;
 
         case "email":
-          errors.email = _services_formValidationService__WEBPACK_IMPORTED_MODULE_4__["default"].validationRegex.email.test(value) ? "" : _services_formValidationService__WEBPACK_IMPORTED_MODULE_4__["default"].validationMessage.email;
+          errors.email = _services_formValidationService__WEBPACK_IMPORTED_MODULE_3__["default"].validationRegex.email.test(value) ? "" : _services_formValidationService__WEBPACK_IMPORTED_MODULE_3__["default"].validationMessage.email;
           break;
 
         case "password":
-          errors.password = value.length < 6 ? _services_formValidationService__WEBPACK_IMPORTED_MODULE_4__["default"].validationMessage.password : "";
+          errors.password = value.length < 6 ? _services_formValidationService__WEBPACK_IMPORTED_MODULE_3__["default"].validationMessage.password : "";
           break;
 
         case "passwordConfirmation":
-          errors.passwordConfirmation = !this.state.password || !this.state.passwordConfirmation || value !== this.state.password ? _services_formValidationService__WEBPACK_IMPORTED_MODULE_4__["default"].validationMessage.passwordConfirmation : "";
+          errors.passwordConfirmation = !this.state.password || !this.state.passwordConfirmation || value !== this.state.password ? _services_formValidationService__WEBPACK_IMPORTED_MODULE_3__["default"].validationMessage.passwordConfirmation : "";
           break;
 
         default:
@@ -73355,6 +73349,8 @@ var Login = /*#__PURE__*/function (_Component) {
   }, {
     key: "onSubmit",
     value: function onSubmit(event) {
+      var _this2 = this;
+
       event.preventDefault();
       var user = {
         name: this.state.name,
@@ -73364,125 +73360,102 @@ var Login = /*#__PURE__*/function (_Component) {
       };
 
       if (this.isFormValid()) {
-        try {
-          var response = /*#__PURE__*/function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-                while (1) {
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      _context.next = 2;
-                      return Object(_api_login__WEBPACK_IMPORTED_MODULE_2__["register"])(user);
-
-                    case 2:
-                      return _context.abrupt("return", _context.sent);
-
-                    case 3:
-                    case "end":
-                      return _context.stop();
-                  }
-                }
-              }, _callee);
-            }));
-
-            return function response() {
-              return _ref.apply(this, arguments);
-            };
-          }();
-
+        Object(_api_login__WEBPACK_IMPORTED_MODULE_1__["register"])(user).then(function (response) {
           if (response) {
-            this.props.history.push("/login");
-            alert("Registration successfull.\n                    User: ".concat(user.name, ", login: ").concat(user.password));
+            _this2.props.history.push("/login");
+
+            console.log(response);
+            alert("Registration successfull. User: ".concat(user.name, ", login: ").concat(user.password));
+          } else {
+            alert("Registration failed. Email already taken. Please try again");
           }
-        } catch (error) {
-          console.error(error);
-        }
-      } else {
-        console.error("Error: Invalid form validation");
+        })["catch"](function (error) {
+          return console.error("Error: Invalid form validation", error);
+        });
       }
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
-      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
-      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-md-6 mt-5 mx-auto"
-      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         noValidate: true,
         onSubmit: this.onSubmit
-      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "h3 mb-3"
-      }, "Register:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      }, "Register:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
-      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "name"
-      }, "Name:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      }, "Name:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         name: "name",
         placeholder: "Username",
         className: "form-control",
         value: this.state.name,
         onChange: this.onChange
-      }), this.state.errors.name.length > 0 && /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      }), this.state.errors.name.length > 0 && /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "error"
-      }, this.state.errors.name)), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      }, this.state.errors.name)), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
-      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "email"
-      }, "Email:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      }, "Email:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "email",
         name: "email",
         placeholder: "Email address",
         className: "form-control",
         value: this.state.email,
         onChange: this.onChange
-      }), this.state.errors.email.length > 0 && /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      }), this.state.errors.email.length > 0 && /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "error"
-      }, this.state.errors.email)), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      }, this.state.errors.email)), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
-      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "password"
-      }, "Password:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      }, "Password:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "password",
         name: "password",
         placeholder: "Password",
         className: "form-control",
         value: this.state.password,
         onChange: this.onChange
-      }), this.state.errors.password.length > 0 && /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      }), this.state.errors.password.length > 0 && /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "error"
-      }, this.state.errors.password)), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      }, this.state.errors.password)), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
-      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "password"
-      }, "Confirm password:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      }, "Confirm password:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "password",
         name: "passwordConfirmation",
         placeholder: "Confirm assword",
         className: "form-control",
         value: this.state.passwordConfirmation,
         onChange: this.onChange
-      }), this.state.errors.passwordConfirmation.length > 0 && /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      }), this.state.errors.passwordConfirmation.length > 0 && /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "error"
-      }, this.state.errors.passwordConfirmation)), this.isFormValid() ? /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      }, this.state.errors.passwordConfirmation)), this.isFormValid() ? /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "btn btn-primary btn-block btn-lg"
-      }, "Register") : /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      }, "Register") : /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn btn-secondary btn-block btn-lg",
         disabled: true
-      }, "Register")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      }, "Register")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-md-6 mx-auto mt-1 text-center"
-      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/login"
       }, "Login")))));
     }
   }]);
 
   return Login;
-}(React__WEBPACK_IMPORTED_MODULE_1__["Component"]);
+}(React__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
 
@@ -73776,7 +73749,7 @@ var FormattedRssList = /*#__PURE__*/function (_Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "card-header"
         }, "HTML Formatted Channels"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "card-text overflow-hidden"
+          className: "card-text mr-4 ml-4 overflow-hidden"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "mt-3",
           dangerouslySetInnerHTML: innerHtml
@@ -74311,41 +74284,38 @@ var ShowAndManageAdminUsers = /*#__PURE__*/function (_Component) {
   }, {
     key: "onClickRemove",
     value: function onClickRemove(event) {
-      var _this3 = this;
-
       event.preventDefault();
       var id = this.getUserId(event);
+      var users = this.state.users.filter(function (user) {
+        return user.id !== id;
+      });
+      console.log('before', this.state.users);
+      this.setState({
+        users: users
+      });
       Object(_api_admin__WEBPACK_IMPORTED_MODULE_1__["deleteAdmin"])(id).then(function (response) {
         if (response) {
-          var users = _this3.state.users.filter(function (user) {
-            return user.id !== id;
-          });
-
-          _this3.setState({
-            users: users
-          });
-
           alert(response.data);
         }
       })["catch"](function (error) {
         return console.log(error);
       });
+      console.log('after', this.state.users);
     }
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       var showUsers = this.state.users.map(function (user) {
-        console.log(user);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UserListElement__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: user.id,
           id: user.id,
           admin: parseInt(user.is_user_admin) ? "admin" : "user",
           email: user.email,
           name: user.name,
-          onClickSetAsAdmin: _this4.onClickSetUserAdmin,
-          onClickRemove: _this4.onClickRemove
+          onClickSetAsAdmin: _this3.onClickSetUserAdmin,
+          onClickRemove: _this3.onClickRemove
         });
       });
 

@@ -37,7 +37,7 @@ export default class FormattedRssList extends Component {
                                 <div className="card-header">
                                     HTML Formatted Channels
                                 </div>
-                                <div className="card-text overflow-hidden">
+                                <div className="card-text mr-4 ml-4 overflow-hidden">
                                     <div className="mt-3"
                                         dangerouslySetInnerHTML={innerHtml}
                                     ></div>
