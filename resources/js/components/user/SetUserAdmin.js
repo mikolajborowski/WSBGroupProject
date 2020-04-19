@@ -19,7 +19,9 @@ export default class SetUserAdmin extends Component {
 
     onClickSetUserAdmin(event) {
         event.preventDefault();
-        setAdmin(this.state.userId).then(response => alert(response.data));
+        setAdmin(this.state.userId)
+            .then(response => alert(response.data))
+            .catch(error => alert("User with provided ID does not exist"));
     }
 
     render() {

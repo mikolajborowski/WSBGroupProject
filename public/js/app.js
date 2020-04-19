@@ -74289,6 +74289,8 @@ var SetUserAdmin = /*#__PURE__*/function (_Component) {
       event.preventDefault();
       Object(_api_admin__WEBPACK_IMPORTED_MODULE_1__["setAdmin"])(this.state.userId).then(function (response) {
         return alert(response.data);
+      })["catch"](function (error) {
+        return alert("User with provided ID does not exist");
       });
     }
   }, {
