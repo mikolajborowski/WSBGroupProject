@@ -10882,3 +10882,73 @@ a.text-dark:focus {
   }
 }
 
+.go-back {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .btn:not(.btn-small) {
+    margin-top: 16px;
+    min-width: 220px;
+  }
+}
+
+.btn-util {
+  width: 180px;
+  min-width: 180px !important;
+}
+
+.btn-indigo {
+  color: white;
+  background-color: #6574cd;
+}
+
+.btn-indigo:hover {
+  opacity: 0.9;
+  color: white;
+}
+
+.btn-teal {
+  color: white;
+  background-color: #4dc0b5;
+}
+
+.btn-teal:hover {
+  opacity: 0.9;
+  color: white;
+}
+
+.nav-item .dropdown-item {
+  color: #fff;
+}
+
+.nav-item .dropdown-item:hover,
+.nav-item .dropdown-item:focus {
+  background-color: #6574cd;
+}
+
+.nav-item .dropdown-item.logout:hover,
+.nav-item .dropdown-item.logout:focus {
+  background-color: #f6993f;
+}
+
+.rss-link-button {
+  margin: 16px auto 0;
+}
+
+.go-to-link {
+  margin-top: 12px;
+}
+
+#navbar {
+  justify-content: flex-end !important;
+}
+
+.error {
+  color: #e3342f;
+}
+
+.edit-label {
+  margin-top: 7px;
+}
+
