@@ -69,6 +69,7 @@ export default class AddRss extends Component {
                 })
                 .catch(error => console.log(error));
         }
+        this.setState({link: '', name: ''})
     }
 
     render() {

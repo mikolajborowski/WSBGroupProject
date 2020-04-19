@@ -53,8 +53,7 @@ export const getChannelsHTML = async () => {
                     Authorization: `Bearer ${localStorage.usertoken}`
                 }
             });
-        console.log(response)
-        return response;
+        return response.data;
     } catch (error) {
         console.error(error);
     }

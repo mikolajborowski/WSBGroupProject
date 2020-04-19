@@ -72529,20 +72529,19 @@ var getChannelsHTML = /*#__PURE__*/function () {
 
           case 3:
             response = _context4.sent;
-            console.log(response);
-            return _context4.abrupt("return", response);
+            return _context4.abrupt("return", response.data);
 
-          case 8:
-            _context4.prev = 8;
+          case 7:
+            _context4.prev = 7;
             _context4.t0 = _context4["catch"](0);
             console.error(_context4.t0);
 
-          case 11:
+          case 10:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[0, 8]]);
+    }, _callee4, null, [[0, 7]]);
   }));
 
   return function getChannelsHTML() {
@@ -72591,19 +72590,20 @@ var getUser = /*#__PURE__*/function () {
 
           case 3:
             response = _context.sent;
+            console.log(response.data);
             return _context.abrupt("return", response.data);
 
-          case 7:
-            _context.prev = 7;
+          case 8:
+            _context.prev = 8;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 10:
+          case 11:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 7]]);
+    }, _callee, null, [[0, 8]]);
   }));
 
   return function getUser() {
@@ -72691,6 +72691,8 @@ __webpack_require__(/*! ./components/rss/AddRss */ "./resources/js/components/rs
 __webpack_require__(/*! ./components/rss/ManageRss */ "./resources/js/components/rss/ManageRss.js");
 
 __webpack_require__(/*! ./components/rss/RssListElement */ "./resources/js/components/rss/RssListElement.js");
+
+__webpack_require__(/*! ./components/rss/FormattedRssList */ "./resources/js/components/rss/FormattedRssList.js");
 
 __webpack_require__(/*! ./components/LandingPage */ "./resources/js/components/LandingPage.js");
 
@@ -72847,6 +72849,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _login_Register__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./login/Register */ "./resources/js/components/login/Register.js");
 /* harmony import */ var _user_UserProfile__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./user/UserProfile */ "./resources/js/components/user/UserProfile.js");
 /* harmony import */ var _user_UserEdit__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./user/UserEdit */ "./resources/js/components/user/UserEdit.js");
+/* harmony import */ var _rss_FormattedRssList__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./rss/FormattedRssList */ "./resources/js/components/rss/FormattedRssList.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -72868,6 +72871,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -72934,6 +72938,10 @@ var Main = /*#__PURE__*/function (_Component) {
         exact: true,
         path: "/rss-list",
         component: _rss_ManageRss__WEBPACK_IMPORTED_MODULE_6__["default"]
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        exact: true,
+        path: "/rss-format",
+        component: _rss_FormattedRssList__WEBPACK_IMPORTED_MODULE_11__["default"]
       }))));
     }
   }]);
@@ -73460,6 +73468,11 @@ var AddRss = /*#__PURE__*/function (_Component) {
           return console.log(error);
         });
       }
+
+      this.setState({
+        link: '',
+        name: ''
+      });
     }
   }, {
     key: "render",
@@ -73522,6 +73535,122 @@ var AddRss = /*#__PURE__*/function (_Component) {
 
   return AddRss;
 }(React__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/rss/FormattedRssList.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/rss/FormattedRssList.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FormattedRssList; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_GoBack__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/GoBack */ "./resources/js/components/utils/GoBack.js");
+/* harmony import */ var _api_rss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/rss */ "./resources/js/api/rss.js");
+/* harmony import */ var _utils_Loading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/Loading */ "./resources/js/components/utils/Loading.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+var FormattedRssList = /*#__PURE__*/function (_Component) {
+  _inherits(FormattedRssList, _Component);
+
+  var _super = _createSuper(FormattedRssList);
+
+  function FormattedRssList() {
+    var _this;
+
+    _classCallCheck(this, FormattedRssList);
+
+    _this = _super.call(this);
+    _this.state = {
+      loading: true,
+      data: []
+    };
+    _this.componentDidMount = _this.componentDidMount.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(FormattedRssList, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      Object(_api_rss__WEBPACK_IMPORTED_MODULE_2__["getChannelsHTML"])().then(function (data) {
+        if (data) {
+          _this2.setState({
+            data: data,
+            loading: false
+          });
+        }
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var innerHtml = {
+        __html: this.state.data
+      };
+
+      if (this.state.loading) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_Loading__WEBPACK_IMPORTED_MODULE_3__["default"], null);
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_GoBack__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          onClick: function onClick() {
+            return _this3.props.history.goBack();
+          }
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "container"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row mt-5 mb-5"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card mb-3"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card-header"
+        }, "HTML Formatted Channels"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card-text overflow-hidden"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "mt-3",
+          dangerouslySetInnerHTML: innerHtml
+        }))))));
+      }
+    }
+  }]);
+
+  return FormattedRssList;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
 
@@ -73757,10 +73886,10 @@ var Rss = /*#__PURE__*/function (_Component) {
         className: "btn btn-indigo btn-util text-break"
       }, "Show rss list")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         className: "mx-auto",
-        to: "/rss-list"
+        to: "/rss-format"
       }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn btn-teal btn-util text-break"
-      }, "Show HTML formatting")))), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddRss__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+      }, "Show HTML content")))), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddRss__WEBPACK_IMPORTED_MODULE_1__["default"], null));
     }
   }]);
 

@@ -23,5 +23,6 @@ require('./components/rss/Rss');
 require('./components/rss/AddRss');
 require('./components/rss/ManageRss');
 require('./components/rss/RssListElement');
+require('./components/rss/FormattedRssList');
 require('./components/LandingPage');
 require('./components/Main');

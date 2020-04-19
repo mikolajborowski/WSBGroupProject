@@ -19,7 +19,7 @@ export const setAdmin = async user => {
 export const deleteAdmin = async id => {
     try {
         const response = await axios
-            .delete(`api/user/delete/${id}`, {
+            .post(`api/user/delete/${id}`, id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.usertoken}`
                 }

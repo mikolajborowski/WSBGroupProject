@@ -10,6 +10,7 @@ import Login from "./login/Login";
 import Register from "./login/Register";
 import UserProfile from "./user/UserProfile";
 import UserEdit from "./user/UserEdit";
+import FormattedRssList from "./rss/FormattedRssList";
 
 export default class Main extends Component {
     constructor() {
@@ -37,6 +38,7 @@ export default class Main extends Component {
                         <Route exact path="/edit-user" component={UserEdit} />
                         <Route exact path="/rss" component={Rss} />
                         <Route exact path="/rss-list" component={ManageRss} />
+                        <Route exact path="/rss-format" component={FormattedRssList} />
                         {/* <Route exact path="/admin" component={} /> */}
                         {/* <Route exact path="/groups" component={} /> */}
                     </div>

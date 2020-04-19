@@ -52,7 +52,7 @@ var deleteAdmin = function deleteAdmin(id) {
         case 0:
           _context2.prev = 0;
           _context2.next = 3;
-          return regeneratorRuntime.awrap(_axios["default"]["delete"]("api/user/delete/".concat(id), {
+          return regeneratorRuntime.awrap(_axios["default"].post("api/user/delete/".concat(id), id, {
             headers: {
               Authorization: "Bearer ".concat(localStorage.usertoken)
             }

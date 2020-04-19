@@ -18,9 +18,9 @@ export default class Rss extends Component {
                                 Show rss list
                             </button>
                         </Link>
-                        <Link className="mx-auto" to="/rss-list">
+                        <Link className="mx-auto" to="/rss-format">
                             <button className="btn btn-teal btn-util text-break">
-                                Show HTML formatting
+                                Show HTML content
                             </button>
                         </Link>
                     </div>

@@ -125,20 +125,19 @@ var getChannelsHTML = function getChannelsHTML() {
 
         case 3:
           response = _context4.sent;
-          console.log(response);
-          return _context4.abrupt("return", response);
+          return _context4.abrupt("return", response.data);
 
-        case 8:
-          _context4.prev = 8;
+        case 7:
+          _context4.prev = 7;
           _context4.t0 = _context4["catch"](0);
           console.error(_context4.t0);
 
-        case 11:
+        case 10:
         case "end":
           return _context4.stop();
       }
     }
-  }, null, null, [[0, 8]]);
+  }, null, null, [[0, 7]]);
 };
 
 exports.getChannelsHTML = getChannelsHTML;

@@ -25,19 +25,20 @@ var getUser = function getUser() {
 
         case 3:
           response = _context.sent;
+          console.log(response.data);
           return _context.abrupt("return", response.data);
 
-        case 7:
-          _context.prev = 7;
+        case 8:
+          _context.prev = 8;
           _context.t0 = _context["catch"](0);
           console.log(_context.t0);
 
-        case 10:
+        case 11:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[0, 7]]);
+  }, null, null, [[0, 8]]);
 };
 
 exports.getUser = getUser;

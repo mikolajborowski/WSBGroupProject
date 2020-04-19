@@ -6,6 +6,7 @@ export const getUser =  async () => {
             .get('api/user', {
                 headers: { Authorization: `Bearer ${localStorage.usertoken}` }
             });
+            console.log(response.data)
         return response.data;
     }
     catch (err) {
