@@ -72354,20 +72354,19 @@ var deleteAdmin = /*#__PURE__*/function () {
 
           case 3:
             response = _context2.sent;
-            console.log(response);
             return _context2.abrupt("return", response);
 
-          case 8:
-            _context2.prev = 8;
+          case 7:
+            _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
             console.error(_context2.t0);
 
-          case 11:
+          case 10:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 8]]);
+    }, _callee2, null, [[0, 7]]);
   }));
 
   return function deleteAdmin(_x2) {
@@ -72391,20 +72390,19 @@ var getAdminList = /*#__PURE__*/function () {
 
           case 3:
             response = _context3.sent;
-            console.log(response.data);
             return _context3.abrupt("return", response.data);
 
-          case 8:
-            _context3.prev = 8;
+          case 7:
+            _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
             console.error(_context3.t0);
 
-          case 11:
+          case 10:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 8]]);
+    }, _callee3, null, [[0, 7]]);
   }));
 
   return function getAdminList() {
@@ -73822,8 +73820,7 @@ var ManageRss = /*#__PURE__*/function (_Component) {
     _this = _super.call(this);
     _this.state = {
       data: [],
-      loading: true,
-      elementRemoved: false
+      loading: true
     };
     _this.onSubmit = _this.onSubmit.bind(_assertThisInitialized(_this));
     _this.onClickDeleteRss = _this.onClickDeleteRss.bind(_assertThisInitialized(_this));
@@ -74264,65 +74261,80 @@ var ShowAndManageAdminUsers = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
-    key: "getUserId",
-    value: function getUserId(event) {
-      var dataset = event.target.dataset;
-      var id = dataset.userid;
-      return id;
-    }
-  }, {
     key: "onClickSetUserAdmin",
     value: function onClickSetUserAdmin(event) {
+      var _this3 = this;
+
       event.preventDefault();
-      var id = this.getUserId(event);
+      var dataset = event.target.dataset;
+      var id = dataset.userid;
       Object(_api_admin__WEBPACK_IMPORTED_MODULE_1__["setAdmin"])(id).then(function (response) {
-        return alert(response.data);
+        alert(response.data);
+        var users = JSON.parse(JSON.stringify(_this3.state.users));
+        users.forEach(function (user) {
+          if (user.id === parseInt(id)) {
+            user.is_user_admin = "1";
+          }
+        });
+
+        _this3.setState({
+          users: users
+        });
       })["catch"](function (error) {
-        return alert("User with provided ID does not exist");
+        return console.log(error);
       });
     }
   }, {
     key: "onClickRemove",
     value: function onClickRemove(event) {
+      var _this4 = this;
+
       event.preventDefault();
-      var id = this.getUserId(event);
-      var users = this.state.users.filter(function (user) {
-        return user.id !== id;
-      });
-      console.log('before', this.state.users);
-      this.setState({
-        users: users
-      });
+      var dataset = event.target.dataset;
+      var id = dataset.userid;
       Object(_api_admin__WEBPACK_IMPORTED_MODULE_1__["deleteAdmin"])(id).then(function (response) {
         if (response) {
           alert(response.data);
+
+          var users = _this4.state.users.filter(function (user) {
+            return user.id !== parseInt(id);
+          });
+
+          _this4.setState({
+            users: users
+          });
         }
       })["catch"](function (error) {
         return console.log(error);
       });
-      console.log('after', this.state.users);
+    }
+  }, {
+    key: "onSubmit",
+    value: function onSubmit(event) {
+      event.preventDefault();
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this5 = this;
 
-      var showUsers = this.state.users.map(function (user) {
+      var showUsers = this.state.users ? this.state.users.map(function (user) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UserListElement__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: user.id,
           id: user.id,
-          admin: parseInt(user.is_user_admin) ? "admin" : "user",
+          admin: parseInt(user.is_user_admin),
           email: user.email,
           name: user.name,
-          onClickSetAsAdmin: _this3.onClickSetUserAdmin,
-          onClickRemove: _this3.onClickRemove
+          onClickSetAsAdmin: _this5.onClickSetUserAdmin,
+          onClickRemove: _this5.onClickRemove
         });
-      });
+      }) : null;
 
       if (this.state.loading) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_Loading__WEBPACK_IMPORTED_MODULE_3__["default"], null);
       } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+          onSubmit: this.onSubmit,
           style: {
             background: "transparent"
           },
@@ -74595,12 +74607,12 @@ var UserListElement = /*#__PURE__*/function (_Component) {
         scope: "row",
         className: "lead"
       }, this.props.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "lead"
+        className: "lead text-break"
       }, this.props.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        className: "lead"
+        className: "lead text-break"
       }, this.props.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
         className: "lead"
-      }, this.props.admin), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+      }, this.props.admin ? "admin" : "user"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
         className: "d-flex justify-content-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn btn-teal btn-sm mr-2 btn-small",

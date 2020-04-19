@@ -10,7 +10,6 @@ export default class ManageRss extends Component {
         this.state = {
             data: [],
             loading: true,
-            elementRemoved: false,
         };
 
         this.onSubmit = this.onSubmit.bind(this);

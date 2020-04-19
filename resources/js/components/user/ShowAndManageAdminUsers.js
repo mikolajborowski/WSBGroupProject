@@ -23,66 +23,77 @@ export default class ShowAndManageAdminUsers extends Component {
         });
     }
 
-    getUserId(event) {
-        const { dataset } = event.target;
-        const id = dataset.userid;
-        return id;
-    }
-
     onClickSetUserAdmin(event) {
         event.preventDefault();
-        const id = this.getUserId(event);
+        const { dataset } = event.target;
+        const id = dataset.userid;
+
         setAdmin(id)
-            .then(response => alert(response.data))
-            .catch(error => alert("User with provided ID does not exist"));
+            .then(response => {
+                alert(response.data);
+                const users = JSON.parse(JSON.stringify(this.state.users));
+                users.forEach(user => {
+                    if (user.id === parseInt(id)) {
+                        user.is_user_admin = "1";
+                    }
+                });
+                this.setState({ users });
+            })
+            .catch(error => console.log(error));
     }
 
     onClickRemove(event) {
         event.preventDefault();
-        const id = this.getUserId(event);
-        const users = this.state.users.filter(user => user.id !== id);
-        console.log('before', this.state.users)
-
-        this.setState({ users });
+        const { dataset } = event.target;
+        const id = dataset.userid;
 
         deleteAdmin(id)
             .then(response => {
                 if (response) {
                     alert(response.data);
+                    const users = this.state.users.filter(
+                        user => user.id !== parseInt(id)
+                    );
+                    this.setState({ users });
                 }
             })
             .catch(error => console.log(error));
+    }
 
-            console.log('after', this.state.users)
+    onSubmit(event) {
+        event.preventDefault();
     }
 
     render() {
-        const showUsers = this.state.users.map(user => {
-            return (
-                <UserListElement
-                    key={user.id}
-                    id={user.id}
-                    admin={parseInt(user.is_user_admin) ? "admin" : "user"}
-                    email={user.email}
-                    name={user.name}
-                    onClickSetAsAdmin={this.onClickSetUserAdmin}
-                    onClickRemove={this.onClickRemove}
-                />
-            );
-        });
+        const showUsers = this.state.users
+            ? this.state.users.map(user => {
+                  return (
+                      <UserListElement
+                          key={user.id}
+                          id={user.id}
+                          admin={parseInt(user.is_user_admin)}
+                          email={user.email}
+                          name={user.name}
+                          onClickSetAsAdmin={this.onClickSetUserAdmin}
+                          onClickRemove={this.onClickRemove}
+                      />
+                  );
+              })
+            : null;
 
         if (this.state.loading) {
             return <Loading />;
         } else {
             return (
-                <div>
+                <React.Fragment>
                     <table
+                        onSubmit={this.onSubmit}
                         style={{ background: "transparent" }}
                         className="table table-bordered table-hover"
                     >
                         <tbody>{showUsers}</tbody>
                     </table>
-                </div>
+                </React.Fragment>
             );
         }
     }

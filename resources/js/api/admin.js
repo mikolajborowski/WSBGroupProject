@@ -23,7 +23,6 @@ export const deleteAdmin = async id => {
                     Authorization: `Bearer ${localStorage.usertoken}`
                 }
             });
-        console.log(response)
         return response;
     } catch (error) {
         console.error(error);
@@ -39,7 +38,6 @@ export const getAdminList = async () => {
                     Authorization: `Bearer ${localStorage.usertoken}`
                 }
             });
-        console.log(response.data)
         return response.data;
     } catch (error) {
         console.error(error);

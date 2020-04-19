@@ -9,9 +9,9 @@ export default class UserListElement extends Component {
                 <td scope="row" className="lead">
                     {this.props.id}
                 </td>
-                <td className="lead">{this.props.name}</td>
-                <td className="lead">{this.props.email}</td>
-                <td className="lead">{this.props.admin}</td>
+                <td className="lead text-break">{this.props.name}</td>
+                <td className="lead text-break">{this.props.email}</td>
+                <td className="lead">{this.props.admin ? "admin" : "user"}</td>
                 <td className="d-flex justify-content-center">
                     <button
                         className="btn btn-teal btn-sm mr-2 btn-small"

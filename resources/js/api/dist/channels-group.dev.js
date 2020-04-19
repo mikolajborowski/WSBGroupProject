@@ -156,7 +156,7 @@ var deleteChannelFromGroup = function deleteChannelFromGroup(id) {
         case 0:
           _context5.prev = 0;
           _context5.next = 3;
-          return regeneratorRuntime.awrap(_axios["default"]["delete"]("api/group/delete/channel/".concat(id), {
+          return regeneratorRuntime.awrap(_axios["default"].post("api/group/delete/channel/".concat(id), id, {
             headers: {
               Authorization: "Bearer ".concat(localStorage.usertoken)
             }
@@ -190,7 +190,7 @@ var deleteGroup = function deleteGroup(id) {
         case 0:
           _context6.prev = 0;
           _context6.next = 3;
-          return regeneratorRuntime.awrap(_axios["default"]["delete"]("api/group/delete/".concat(id), {
+          return regeneratorRuntime.awrap(_axios["default"].post("api/group/delete/".concat(id), id, {
             headers: {
               Authorization: "Bearer ".concat(localStorage.usertoken)
             }
