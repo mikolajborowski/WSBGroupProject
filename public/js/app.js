@@ -73748,12 +73748,19 @@ var Rss = /*#__PURE__*/function (_Component) {
         className: "row jumbotron flex-column align-middle mt-5 mx-auto col-md-8"
       }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "lead text-center"
-      }, "Manage your RSS channel list"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      }, "Manage your RSS channel list or show formatted content"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-flex mt-3"
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         className: "mx-auto",
         to: "/rss-list"
       }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-success btn-lg"
-      }, "Show rss list"))), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddRss__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+        className: "btn btn-indigo btn-util text-break"
+      }, "Show rss list")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        className: "mx-auto",
+        to: "/rss-list"
+      }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-teal btn-util text-break"
+      }, "Show HTML formatting")))), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddRss__WEBPACK_IMPORTED_MODULE_1__["default"], null));
     }
   }]);
 

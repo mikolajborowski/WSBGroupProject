@@ -10893,6 +10893,31 @@ a.text-dark:focus {
   }
 }
 
+.btn-util {
+  width: 180px;
+  min-width: 180px !important;
+}
+
+.btn-indigo {
+  color: white;
+  background-color: #6574cd;
+}
+
+.btn-indigo:hover {
+  opacity: 0.9;
+  color: white;
+}
+
+.btn-teal {
+  color: white;
+  background-color: #4dc0b5;
+}
+
+.btn-teal:hover {
+  opacity: 0.9;
+  color: white;
+}
+
 .nav-item .dropdown-item {
   color: #fff;
 }
