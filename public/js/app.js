@@ -72421,20 +72421,19 @@ var postChannel = /*#__PURE__*/function () {
 
           case 3:
             response = _context.sent;
-            console.log(response);
             return _context.abrupt("return", response);
 
-          case 8:
-            _context.prev = 8;
+          case 7:
+            _context.prev = 7;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 11:
+          case 10:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 8]]);
+    }, _callee, null, [[0, 7]]);
   }));
 
   return function postChannel(_x) {
@@ -72450,7 +72449,7 @@ var deleteChannel = /*#__PURE__*/function () {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("api/channels/delete/".concat(id), {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/channels/delete/".concat(id), id, {
               headers: {
                 Authorization: "Bearer ".concat(localStorage.usertoken)
               }
@@ -72458,20 +72457,19 @@ var deleteChannel = /*#__PURE__*/function () {
 
           case 3:
             response = _context2.sent;
-            console.log(response);
             return _context2.abrupt("return", response);
 
-          case 8:
-            _context2.prev = 8;
+          case 7:
+            _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
             console.error(_context2.t0);
 
-          case 11:
+          case 10:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 8]]);
+    }, _callee2, null, [[0, 7]]);
   }));
 
   return function deleteChannel(_x2) {
@@ -72495,20 +72493,19 @@ var getChannelsList = /*#__PURE__*/function () {
 
           case 3:
             response = _context3.sent;
-            console.log(response);
             return _context3.abrupt("return", response);
 
-          case 8:
-            _context3.prev = 8;
+          case 7:
+            _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
             console.error(_context3.t0);
 
-          case 11:
+          case 10:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 8]]);
+    }, _callee3, null, [[0, 7]]);
   }));
 
   return function getChannelsList() {
@@ -72683,7 +72680,9 @@ __webpack_require__(/*! ./components/user/UserEdit */ "./resources/js/components
 
 __webpack_require__(/*! ./components/utils/Navbar */ "./resources/js/components/utils/Navbar.js");
 
-__webpack_require__(/*! ./components/LandingPage */ "./resources/js/components/LandingPage.js");
+__webpack_require__(/*! ./components/utils/GoBack */ "./resources/js/components/utils/GoBack.js");
+
+__webpack_require__(/*! ./components/utils/Loading */ "./resources/js/components/utils/Loading.js");
 
 __webpack_require__(/*! ./components/rss/Rss */ "./resources/js/components/rss/Rss.js");
 
@@ -72691,7 +72690,11 @@ __webpack_require__(/*! ./components/rss/AddRss */ "./resources/js/components/rs
 
 __webpack_require__(/*! ./components/rss/ManageRss */ "./resources/js/components/rss/ManageRss.js");
 
-__webpack_require__(/*! ./components/Main */ "./resources/js/components/Main.js"); // require('./components/Example');
+__webpack_require__(/*! ./components/rss/RssListElement */ "./resources/js/components/rss/RssListElement.js");
+
+__webpack_require__(/*! ./components/LandingPage */ "./resources/js/components/LandingPage.js");
+
+__webpack_require__(/*! ./components/Main */ "./resources/js/components/Main.js");
 
 /***/ }),
 
@@ -73582,9 +73585,10 @@ var ManageRss = /*#__PURE__*/function (_Component) {
     _this.state = {
       data: [],
       loading: true,
-      errors: {}
+      elementRemoved: false
     };
     _this.onSubmit = _this.onSubmit.bind(_assertThisInitialized(_this));
+    _this.onClickDeleteRss = _this.onClickDeleteRss.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -73595,8 +73599,14 @@ var ManageRss = /*#__PURE__*/function (_Component) {
 
       Object(_api_rss__WEBPACK_IMPORTED_MODULE_1__["getChannelsList"])().then(function (response) {
         if (response) {
+          var data = response.data;
+          var dataArray = [];
+          Object.keys(data).forEach(function (key) {
+            dataArray.push(data[key]);
+          });
+
           _this2.setState({
-            data: response.data,
+            data: data,
             loading: false
           });
         }
@@ -73606,12 +73616,15 @@ var ManageRss = /*#__PURE__*/function (_Component) {
     key: "onClickDeleteRss",
     value: function onClickDeleteRss(event) {
       event.persist();
-      var _event$target = event.target,
-          name = _event$target.name,
-          value = _event$target.value,
-          dataset = _event$target.dataset;
+      var dataset = event.target.dataset;
       var id = dataset.rssid;
-      console.log('id', id); // deleteChannel()
+      var newData = this.state.data.filter(function (item) {
+        return item.id !== id;
+      });
+      Object(_api_rss__WEBPACK_IMPORTED_MODULE_1__["deleteChannel"])(id);
+      this.setState({
+        data: newData
+      });
     }
   }, {
     key: "onSubmit",
@@ -73623,6 +73636,16 @@ var ManageRss = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this3 = this;
 
+      var showRssList = this.state.data ? this.state.data.map(function (item) {
+        return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RssListElement__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          key: item.id,
+          id: item.id,
+          name: item.name,
+          link: item.link,
+          onClick: _this3.onClickDeleteRss
+        });
+      }) : null;
+
       if (this.state.loading) {
         return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_Loading__WEBPACK_IMPORTED_MODULE_3__["default"], null);
       } else {
@@ -73633,35 +73656,15 @@ var ManageRss = /*#__PURE__*/function (_Component) {
         }), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "row col-md-12 mt-5 mx-auto"
         }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "card mx-auto col-md-10 mt-3"
+          className: "card mx-auto mb-5 col-md-12 mt-3"
         }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "card-header text-center",
           onClick: this.onSubmit
         }, "Links"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "card-text"
+          className: "card-text mb-3"
         }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "list-group list-group-flush"
-        }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          className: "list-group-item d-flex justify-content-between align-items-center"
-        }, "Cras justo odio", /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          onClick: this.onClickDeleteRss,
-          className: "btn btn-remove btn-sm btn-danger",
-          "data-rssid": "2" // data-rssId={id}
-
-        }, "Remove")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          className: "list-group-item d-flex justify-content-between align-items-center"
-        }, "Cras justo odio", /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "btn btn-remove btn-sm btn-danger"
-        }, "Remove")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          className: "list-group-item d-flex justify-content-between align-items-center"
-        }, "Cras justo odio", /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "btn btn-remove btn-sm btn-danger"
-        }, "Remove"))), this.state.data ? this.state.data.forEach(function (item) {
-          console.log(item);
-
-          /*#__PURE__*/
-          React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, item);
-        }) : null)), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, showRssList))), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "container"
         }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "row col-sm-8 mx-auto"
@@ -73811,7 +73814,19 @@ var RssListElement = /*#__PURE__*/function (_Component) {
   _createClass(RssListElement, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.rssData);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "list-group-item d-flex justify-content-between align-items-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-flex flex-column"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "lead text-capitalize"
+      }, this.props.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "mt-1 mr-4 text-break"
+      }, this.props.link)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.props.onClick,
+        className: "btn btn-remove btn-sm btn-danger",
+        "data-rssid": this.props.id
+      }, "Remove"));
     }
   }]);
 

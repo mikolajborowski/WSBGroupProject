@@ -23,7 +23,9 @@ require('./components/user/UserEdit');
 
 require('./components/utils/Navbar');
 
-require('./components/LandingPage');
+require('./components/utils/GoBack');
+
+require('./components/utils/Loading');
 
 require('./components/rss/Rss');
 
@@ -31,4 +33,8 @@ require('./components/rss/AddRss');
 
 require('./components/rss/ManageRss');
 
-require('./components/Main'); // require('./components/Example');
+require('./components/rss/RssListElement');
+
+require('./components/LandingPage');
+
+require('./components/Main');

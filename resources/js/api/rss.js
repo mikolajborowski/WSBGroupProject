@@ -9,7 +9,6 @@ export const postChannel = async channels => {
                     Authorization: `Bearer ${localStorage.usertoken}`
                 }
             });
-        console.log(response);
         return response;
     } catch (error) {
         console.log(error)
@@ -19,12 +18,11 @@ export const postChannel = async channels => {
 export const deleteChannel = async id => {
     try {
         const response = await axios
-            .delete(`api/channels/delete/${id}`, {
+            .post(`api/channels/delete/${id}`, id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.usertoken}`
                 }
             });
-        console.log(response)
         return response;
     } catch (error) {
         console.error(error);
@@ -40,7 +38,6 @@ export const getChannelsList = async () => {
                     Authorization: `Bearer ${localStorage.usertoken}`
                 }
             });
-            console.log(response)
         return response;
     } catch (error) {
         console.error(error);

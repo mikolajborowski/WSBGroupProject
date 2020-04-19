@@ -26,20 +26,19 @@ var postChannel = function postChannel(channels) {
 
         case 3:
           response = _context.sent;
-          console.log(response);
           return _context.abrupt("return", response);
 
-        case 8:
-          _context.prev = 8;
+        case 7:
+          _context.prev = 7;
           _context.t0 = _context["catch"](0);
           console.log(_context.t0);
 
-        case 11:
+        case 10:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[0, 8]]);
+  }, null, null, [[0, 7]]);
 };
 
 exports.postChannel = postChannel;
@@ -52,7 +51,7 @@ var deleteChannel = function deleteChannel(id) {
         case 0:
           _context2.prev = 0;
           _context2.next = 3;
-          return regeneratorRuntime.awrap(_axios["default"]["delete"]("api/channels/delete/".concat(id), {
+          return regeneratorRuntime.awrap(_axios["default"].post("api/channels/delete/".concat(id), id, {
             headers: {
               Authorization: "Bearer ".concat(localStorage.usertoken)
             }
@@ -60,20 +59,19 @@ var deleteChannel = function deleteChannel(id) {
 
         case 3:
           response = _context2.sent;
-          console.log(response);
           return _context2.abrupt("return", response);
 
-        case 8:
-          _context2.prev = 8;
+        case 7:
+          _context2.prev = 7;
           _context2.t0 = _context2["catch"](0);
           console.error(_context2.t0);
 
-        case 11:
+        case 10:
         case "end":
           return _context2.stop();
       }
     }
-  }, null, null, [[0, 8]]);
+  }, null, null, [[0, 7]]);
 };
 
 exports.deleteChannel = deleteChannel;
@@ -94,20 +92,19 @@ var getChannelsList = function getChannelsList() {
 
         case 3:
           response = _context3.sent;
-          console.log(response);
           return _context3.abrupt("return", response);
 
-        case 8:
-          _context3.prev = 8;
+        case 7:
+          _context3.prev = 7;
           _context3.t0 = _context3["catch"](0);
           console.error(_context3.t0);
 
-        case 11:
+        case 10:
         case "end":
           return _context3.stop();
       }
     }
-  }, null, null, [[0, 8]]);
+  }, null, null, [[0, 7]]);
 };
 
 exports.getChannelsList = getChannelsList;
