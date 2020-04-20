@@ -1,0 +1,36 @@
+@import 'variables';
+.go-back {
+    cursor: pointer;
+}
+
+.btn {
+    @media screen and (min-width: 768px) {
+        &:not(.btn-small) {
+            margin-top: 16px;
+            min-width: 220px;
+        }
+    }   
+}
+
+.btn-util {
+    width: 180px;
+    min-width: 180px !important;
+}
+
+.btn-indigo {
+    color: white;
+    background-color: $indigo;
+    &:hover {
+        opacity: 0.9;
+        color: white;
+    }
+}
+
+.btn-teal {
+    color: white;
+    background-color: $teal;
+    &:hover {
+        opacity: 0.9;
+        color: white;
+    }
+}
