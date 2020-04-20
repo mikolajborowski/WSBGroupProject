@@ -98,6 +98,7 @@ class GroupsController extends Controller
                 ->get();
                 $channel = json_decode($channel, true);
                 $channels[] = [
+                    'id_of_group_record' => $groups_record['id'],
                     'name' => $channel[0]['name'],
                     'link' => $channel[0]['link'],
                 ];
