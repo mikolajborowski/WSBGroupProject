@@ -1,6 +1,8 @@
 import React, { Component } from "React";
 import { postChannel, getChannelsList, deleteChannel } from "../../api/rss";
 import FormValidationService from "../services/formValidationService";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class AddRss extends Component {
     constructor() {
@@ -16,6 +18,10 @@ export default class AddRss extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    notify () {
+        toast("Rss channel succesfully added to list")
     }
 
     onChange(event) {
@@ -64,7 +70,7 @@ export default class AddRss extends Component {
             postChannel(channels)
                 .then(response => {
                     if (response) {
-                        alert("Rss channel succesfully added to list");
+                        this.notify();
                     }
                 })
                 .catch(error => console.log(error));
@@ -76,6 +82,7 @@ export default class AddRss extends Component {
         return (
             <div className="container">
                 <div className="row col-md-11 mt-3 mb-5 mx-auto">
+                <ToastContainer />
                     <div className="card mx-auto col-md-10 mb-5 mt-3">
                         <div className="card-header text-center">
                             Add new RSS

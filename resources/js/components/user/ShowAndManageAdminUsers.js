@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { getAdminList, deleteAdmin, setAdmin } from "../../api/admin";
 import UserListElement from "./UserListElement";
 import Loading from "../utils/Loading";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class ShowAndManageAdminUsers extends Component {
     constructor() {
@@ -22,6 +24,10 @@ export default class ShowAndManageAdminUsers extends Component {
             }
         });
     }
+
+    notify (response) {
+        toast(`${response}`)
+    };
 
     onClickSetUserAdmin(event) {
         event.preventDefault();
@@ -68,15 +74,18 @@ export default class ShowAndManageAdminUsers extends Component {
         const showUsers = this.state.users
             ? this.state.users.map(user => {
                   return (
-                      <UserListElement
-                          key={user.id}
-                          id={user.id}
-                          admin={parseInt(user.is_user_admin)}
-                          email={user.email}
-                          name={user.name}
-                          onClickSetAsAdmin={this.onClickSetUserAdmin}
-                          onClickRemove={this.onClickRemove}
-                      />
+                      <div>
+                        <ToastContainer />
+                        <UserListElement
+                            key={user.id}
+                            id={user.id}
+                            admin={parseInt(user.is_user_admin)}
+                            email={user.email}
+                            name={user.name}
+                            onClickSetAsAdmin={this.onClickSetUserAdmin}
+                            onClickRemove={this.onClickRemove}
+                        />
+                      </div>
                   );
               })
             : null;
@@ -86,13 +95,16 @@ export default class ShowAndManageAdminUsers extends Component {
         } else {
             return (
                 <React.Fragment>
-                    <table
-                        onSubmit={this.onSubmit}
-                        style={{ background: "transparent" }}
-                        className="table table-bordered table-hover"
-                    >
-                        <tbody>{showUsers}</tbody>
-                    </table>
+                    <div>
+                        <ToastContainer />
+                        <table
+                            onSubmit={this.onSubmit}
+                            style={{ background: "transparent" }}
+                            className="table table-bordered table-hover"
+                        >
+                            <tbody>{showUsers}</tbody>
+                        </table>
+                    </div>
                 </React.Fragment>
             );
         }

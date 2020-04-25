@@ -1,6 +1,8 @@
 import React, {Component } from 'React';
 import { login } from '../../api/login';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class Login extends Component {
     constructor() {
@@ -15,6 +17,14 @@ export default class Login extends Component {
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
+
+    notify (name, password) {
+        toast(`Registration successfull. User: ${name}, login: ${password}`)
+    }
+
+    notifyError () {
+        toast("Login error. Please try again")
+    };
 
     onChange(event) {
         this.setState({
@@ -34,7 +44,7 @@ export default class Login extends Component {
             if (response) {
                 this.props.history.push('/user')
             } else {
-                alert("Login error. Please try again")
+                this.notifyError()
             }
         });
     }
@@ -43,6 +53,7 @@ export default class Login extends Component {
             return (
                 <div className="container">
                     <div className="row">
+                    <ToastContainer />
                         <div className="col-md-6 mt-5 mx-auto">
                             <form noValidate onSubmit={this.onSubmit}>
                                 <h1 className="h3 mb-3">

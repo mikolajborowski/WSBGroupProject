@@ -3,6 +3,15 @@ import React, { Component } from "react";
 export default class RssListElement extends Component {
     constructor() {
         super();
+        this.state = {
+            groupId: ''
+        };
+    }
+
+    change(id) {
+        console.log('event', id)
+        this.setState.groupId = id
+        console.log('event', this.setState.groupId)
     }
 
     render() {
@@ -18,6 +27,17 @@ export default class RssListElement extends Component {
                     data-rssid={this.props.id}
                 >
                     Remove
+                </button>
+                <select className="custom-select" onChange={e => this.change(e.target.value)}>
+                    {this.props.groupList.map(item => (
+                        <option key={item.group_id} value={item.group_id} >{item.group_name}</option>
+                    ))}
+                </select>
+                <button
+                    onClick={() => this.props.onClickAddToGroup(this.state.groupId, this.props.id)}
+                    className="btn btn-small btn-sm btn-danger"
+                >
+                    add channel to group
                 </button>
             </li>
         );
