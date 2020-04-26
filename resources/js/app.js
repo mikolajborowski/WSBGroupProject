@@ -19,6 +19,7 @@ require('./components/user/UserEdit');
 require('./components/utils/Navbar');
 require('./components/utils/GoBack');
 require('./components/utils/Loading');
+require('./components/rss/EditGroupTitle');
 require('./components/rss/Rss');
 require('./components/rss/AddRss');
 require('./components/rss/ManageRss');

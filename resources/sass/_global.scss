@@ -34,3 +34,25 @@
         color: white;
     }
 }
+
+.card {
+    width: 100%;
+}
+
+.btn-edit-title {
+    min-width: 50px !important;
+    margin: 0;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.select-max {
+    max-width: 200px;
+}
+
+.row {
+    width: 100%;
+}

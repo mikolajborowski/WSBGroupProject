@@ -66,7 +66,7 @@ export const getAllGroups = async () => {
 export const deleteChannelFromGroup = async id => {
     try {
         const response = await axios
-            .post(`api/group/delete/channel/${id}`, id, {
+            .post(`api/group/delete/channel`, id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.usertoken}`
                 }
@@ -81,7 +81,7 @@ export const deleteChannelFromGroup = async id => {
 export const deleteGroup = async id => {
     try {
         const response = await axios
-            .post(`api/group/delete/${id}`, id, {
+            .post(`api/group/delete`, id, {
                 headers: {
                     Authorization: `Bearer ${localStorage.usertoken}`
                 }

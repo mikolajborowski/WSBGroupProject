@@ -2,6 +2,8 @@ import React, { Component } from "React";
 import { register } from "../../api/login";
 import { Link } from "react-router-dom";
 import FormValidationService from "../services/formValidationService";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class Login extends Component {
     constructor() {
@@ -90,6 +92,7 @@ export default class Login extends Component {
                     if (response) {
                         this.props.history.push("/login");
                         console.log(response)
+                        this.notify(user.name, user.password);
                         alert(
                             `Registration successfull. User: ${user.name}, login: ${user.password}`
                         );
@@ -103,10 +106,15 @@ export default class Login extends Component {
         }
     }
 
+    notify (name, password) {
+        toast(`Registration successfull. User: ${name}, login: ${password}`)
+    };
+
     render() {
         return (
             <div className="container">
                 <div className="row">
+                <ToastContainer />
                     <div className="col-md-6 mt-5 mx-auto">
                         <form noValidate onSubmit={this.onSubmit}>
                             <h1 className="h3 mb-3">Register:</h1>
@@ -196,6 +204,7 @@ export default class Login extends Component {
                         <div className="col-md-6 mx-auto mt-1 text-center">
                             <Link to="/login">Login</Link>
                         </div>
+                        
                     </div>
                 </div>
             </div>
