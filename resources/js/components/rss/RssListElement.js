@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export default class RssListElement extends Component {
     constructor() {
         super();
-        const groupIdtoPass = '';
+        const groupIdtoPass = '1';
     }
 
     change(id) {
@@ -24,17 +24,19 @@ export default class RssListElement extends Component {
                 >
                     Remove
                 </button>
-                <select className="custom-select" onChange={e => this.change(e.target.value)}>
-                    {this.props.groupList.map(item => (
-                        <option key={item.group_id} value={item.group_id} >{item.group_name}</option>
-                    ))}
-                </select>
-                <button
-                    onClick={() => this.props.onClickAddToGroup(event, this.groupIdtoPass, this.props.id)}
-                    className="btn btn-small btn-sm btn-danger"
-                >
-                    add channel to group
-                </button>
+                <div className="d-flex">
+                    <select className="custom-select select-max" onChange={e => this.change(e.target.value)}>
+                        {this.props.groupList.map((item,index )=> (
+                            <option key={item.group_id} value={item.group_id} >{item.group_name}</option>
+                        ))}
+                    </select>
+                    <button
+                        onClick={() => this.props.onClickAddToGroup(event, this.groupIdtoPass, this.props.id)}
+                        className="btn btn-small btn-sm btn-danger"
+                    >
+                        add channel to group
+                    </button>
+                </div>
             </li>
         );
     }

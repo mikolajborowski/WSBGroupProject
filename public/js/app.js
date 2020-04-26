@@ -77010,6 +77010,8 @@ __webpack_require__(/*! ./components/utils/GoBack */ "./resources/js/components/
 
 __webpack_require__(/*! ./components/utils/Loading */ "./resources/js/components/utils/Loading.js");
 
+__webpack_require__(/*! ./components/rss/EditGroupTitle */ "./resources/js/components/rss/EditGroupTitle.js");
+
 __webpack_require__(/*! ./components/rss/Rss */ "./resources/js/components/rss/Rss.js");
 
 __webpack_require__(/*! ./components/rss/AddRss */ "./resources/js/components/rss/AddRss.js");
@@ -77879,6 +77881,127 @@ var AddRss = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/rss/EditGroupTitle.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/rss/EditGroupTitle.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EditGroupTitle; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api_channels_group__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../api/channels-group */ "./resources/js/api/channels-group.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var EditGroupTitle = /*#__PURE__*/function (_Component) {
+  _inherits(EditGroupTitle, _Component);
+
+  var _super = _createSuper(EditGroupTitle);
+
+  function EditGroupTitle() {
+    var _this;
+
+    _classCallCheck(this, EditGroupTitle);
+
+    _this = _super.call(this);
+    _this.state = {
+      newName: '',
+      showInput: true
+    };
+    return _this;
+  }
+
+  _createClass(EditGroupTitle, [{
+    key: "changeGroupTitle",
+    value: function changeGroupTitle() {
+      var formData = new FormData();
+      formData.append('new_name', this.state.newName);
+      formData.append('group_id', this.props.groupId);
+      Object(_api_channels_group__WEBPACK_IMPORTED_MODULE_1__["renameGroup"])(formData).then(function (response) {
+        if (response) {
+          console.log('response', response);
+        }
+      });
+      this.setState.newName = '';
+      this.props.refreshCallback();
+    }
+  }, {
+    key: "onChangeFn",
+    value: function onChangeFn(event) {
+      this.setState(_defineProperty({}, event.target.name, event.target.value));
+    }
+  }, {
+    key: "toggleShow",
+    value: function toggleShow() {
+      console.log('changed', this.state.showInput);
+      this.state.showInput = !this.state.showInput;
+      console.log('changed', this.state.showInput);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "input-group"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.newName,
+        onChange: function onChange(event) {
+          return _this2.onChangeFn(event);
+        },
+        name: "newName",
+        className: "form-control",
+        placeholder: "type here"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "input-group-btn"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-default btn-edit-title",
+        onClick: function onClick() {
+          return _this2.changeGroupTitle();
+        },
+        type: "button"
+      }, "Edit group name"))));
+    }
+  }]);
+
+  return EditGroupTitle;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/rss/FormattedRssList.js":
 /*!*********************************************************!*\
   !*** ./resources/js/components/rss/FormattedRssList.js ***!
@@ -78011,7 +78134,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_GoBack__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/GoBack */ "./resources/js/components/utils/GoBack.js");
 /* harmony import */ var _utils_Loading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/Loading */ "./resources/js/components/utils/Loading.js");
 /* harmony import */ var _RssListElement__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RssListElement */ "./resources/js/components/rss/RssListElement.js");
-/* harmony import */ var _api_channels_group__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../api/channels-group */ "./resources/js/api/channels-group.js");
+/* harmony import */ var _EditGroupTitle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EditGroupTitle */ "./resources/js/components/rss/EditGroupTitle.js");
+/* harmony import */ var _api_channels_group__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../api/channels-group */ "./resources/js/api/channels-group.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -78035,6 +78159,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -78093,9 +78218,9 @@ var ManageRss = /*#__PURE__*/function (_Component) {
   }, {
     key: "deleteGroupFn",
     value: function deleteGroupFn(id) {
-      // let formData = new FormData();
-      // formData.append('channel_group_id', id)
-      // deleteGroup(formData)
+      var formData = new FormData();
+      formData.append('group_id', id);
+      Object(_api_channels_group__WEBPACK_IMPORTED_MODULE_6__["deleteGroup"])(formData);
       this.getChannelGroups();
     }
   }, {
@@ -78103,7 +78228,7 @@ var ManageRss = /*#__PURE__*/function (_Component) {
     value: function getChannelGroups() {
       var _this3 = this;
 
-      Object(_api_channels_group__WEBPACK_IMPORTED_MODULE_5__["getAllGroups"])().then(function (response) {
+      Object(_api_channels_group__WEBPACK_IMPORTED_MODULE_6__["getAllGroups"])().then(function (response) {
         if (response) {
           var data = response.data;
 
@@ -78120,11 +78245,19 @@ var ManageRss = /*#__PURE__*/function (_Component) {
     value: function addChannelToGroupFn(event, groupID, channelID) {
       var _this4 = this;
 
+      var groupIdChecked;
+
+      if (!groupID) {
+        groupIdChecked = this.state.groupList[0].group_id;
+      } else {
+        groupIdChecked = groupID;
+      }
+
       var data = {
-        group_id: groupID,
+        group_id: groupIdChecked,
         channel_id: channelID
       };
-      Object(_api_channels_group__WEBPACK_IMPORTED_MODULE_5__["addChannelToGroup"])(data).then(function (response) {
+      Object(_api_channels_group__WEBPACK_IMPORTED_MODULE_6__["addChannelToGroup"])(data).then(function (response) {
         if (response) {
           console.log('response', response);
         } else {
@@ -78166,7 +78299,7 @@ var ManageRss = /*#__PURE__*/function (_Component) {
       var name = {
         name: this.state.group
       };
-      Object(_api_channels_group__WEBPACK_IMPORTED_MODULE_5__["addGroup"])(name).then(function (response) {
+      Object(_api_channels_group__WEBPACK_IMPORTED_MODULE_6__["addGroup"])(name).then(function (response) {
         if (response) {
           console.log('response', response);
         } else {
@@ -78181,10 +78314,9 @@ var ManageRss = /*#__PURE__*/function (_Component) {
     value: function removeChannelFromGroupFn(dataToRemove) {
       var _this6 = this;
 
-      var remove = {
-        id_of_group_record: dataToRemove.id_of_group_record
-      };
-      Object(_api_channels_group__WEBPACK_IMPORTED_MODULE_5__["deleteChannelFromGroup"])(dataToRemove.id_of_group_record).then(function (response) {
+      var formData = new FormData();
+      formData.append('channel_group_id', dataToRemove.id_of_group_record);
+      Object(_api_channels_group__WEBPACK_IMPORTED_MODULE_6__["deleteChannelFromGroup"])(formData).then(function (response) {
         if (response) {
           console.log('response', response);
         } else {
@@ -78234,7 +78366,13 @@ var ManageRss = /*#__PURE__*/function (_Component) {
           className: "row col-sm-8 mx-auto"
         }))), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "row col-md-12 mt-5 mx-auto"
-        }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "List Groups:"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Groups:")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "d-flex"
+        }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "text",
           name: "group",
           placeholder: "Group name",
@@ -78243,37 +78381,27 @@ var ManageRss = /*#__PURE__*/function (_Component) {
         }), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: this.addRssGroup,
           className: "btn btn-small btn-sm btn-danger"
-        }, "Add RSS group"), this.state.groupList.map(function (item) {
+        }, "Add RSS group"))), this.state.groupList.map(function (item) {
           return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             key: item.group_id,
             className: "row col-md-12 mt-5 mx-auto"
           }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "card"
           }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "card-body"
-          }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+            className: "card-header"
+          }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
             className: "card-title"
-          }, item.group_name), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "row"
-          }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "input-group"
-          }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-            className: "input-group-btn"
-          }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-            className: "btn btn-default",
-            type: "button"
-          }, "Go!")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-            type: "text",
-            className: "form-control",
-            placeholder: "Search for..."
+          }, item.group_name), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditGroupTitle__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            groupId: item.group_id,
+            refreshCallback: _this7.getChannelGroups
           })), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-            className: "btn btn-small btn-sm btn-danger"
-          }, "Edit group name")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
             onClick: function onClick() {
               return _this7.deleteGroupFn(item.group_id);
             },
             className: "btn btn-small btn-sm btn-danger"
-          }, "X"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          }, "Remove group")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "card-body"
+          }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
             className: "list-group list-group-flush"
           }, item.channels.map(function (channelItem) {
             return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -78441,7 +78569,7 @@ var RssListElement = /*#__PURE__*/function (_Component) {
     _classCallCheck(this, RssListElement);
 
     _this = _super.call(this);
-    var groupIdtoPass = '';
+    var groupIdtoPass = '1';
     return _this;
   }
 
@@ -78467,12 +78595,14 @@ var RssListElement = /*#__PURE__*/function (_Component) {
         onClick: this.props.onClick,
         className: "btn btn-small btn-sm btn-danger",
         "data-rssid": this.props.id
-      }, "Remove"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-        className: "custom-select",
+      }, "Remove"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-flex"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        className: "custom-select select-max",
         onChange: function onChange(e) {
           return _this2.change(e.target.value);
         }
-      }, this.props.groupList.map(function (item) {
+      }, this.props.groupList.map(function (item, index) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
           key: item.group_id,
           value: item.group_id
@@ -78482,7 +78612,7 @@ var RssListElement = /*#__PURE__*/function (_Component) {
           return _this2.props.onClickAddToGroup(event, _this2.groupIdtoPass, _this2.props.id);
         },
         className: "btn btn-small btn-sm btn-danger"
-      }, "add channel to group"));
+      }, "add channel to group")));
     }
   }]);
 
@@ -79427,8 +79557,8 @@ var Navbar = /*#__PURE__*/function (_Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Igor\Desktop\wsb\WSBGroupProject\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Igor\Desktop\wsb\WSBGroupProject\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Igor\Desktop\wsb\wsb\WSBGroupProject\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Igor\Desktop\wsb\wsb\WSBGroupProject\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

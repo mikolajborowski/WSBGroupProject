@@ -3,7 +3,8 @@ import { getChannelsList, deleteChannel } from "../../api/rss";
 import GoBack from "../utils/GoBack";
 import Loading from "../utils/Loading";
 import RssListElement from "./RssListElement";
-import { addGroup, renameGroup, addChannelToGroup, getAllGroups, deleteChannelFromGroup, deleteGroup } from '../../api/channels-group';
+import EditGroupTitle from "./EditGroupTitle";
+import { addGroup, addChannelToGroup, getAllGroups, deleteChannelFromGroup, deleteGroup } from '../../api/channels-group';
 
 export default class ManageRss extends Component {
     constructor() {
@@ -37,10 +38,9 @@ export default class ManageRss extends Component {
     }
 
     deleteGroupFn(id) {
-        // let formData = new FormData();
-     
-        // formData.append('channel_group_id', id)
-        // deleteGroup(formData)
+        let formData = new FormData();
+        formData.append('group_id', id)
+        deleteGroup(formData)
         this.getChannelGroups()
     }
 
@@ -56,8 +56,15 @@ export default class ManageRss extends Component {
     }
 
     addChannelToGroupFn(event, groupID, channelID) {
+        let groupIdChecked;
+        if(!groupID) {
+            groupIdChecked = this.state.groupList[0].group_id
+        } else {
+            groupIdChecked = groupID
+        }
+         
         const data = {
-            group_id: groupID,
+            group_id: groupIdChecked,
             channel_id: channelID
         }
        
@@ -108,10 +115,10 @@ export default class ManageRss extends Component {
     }
 
     removeChannelFromGroupFn(dataToRemove) {
-        const remove = {
-            id_of_group_record: dataToRemove.id_of_group_record
-        }
-        deleteChannelFromGroup(dataToRemove.id_of_group_record).then(response => {
+        let formData = new FormData();
+        formData.append('channel_group_id', dataToRemove.id_of_group_record)
+
+        deleteChannelFromGroup(formData).then(response => {
             if (response) {
                 console.log('response', response)
             } else {
@@ -164,39 +171,43 @@ export default class ManageRss extends Component {
                         </div>
                     </div>
                     <div className="row col-md-12 mt-5 mx-auto">
-                        <h2>List Groups:</h2>
-                        <input type="text" 
-                                           name="group" 
-                                           placeholder="Group name" 
-                                           className="form-control"
-                                           onChange={this.onChange}/>
-                        <button
-                            onClick={this.addRssGroup}
-                            className="btn btn-small btn-sm btn-danger"
-                        >
-                            Add RSS group
-                        </button>
+                        <div className="row">
+                            <h2>Groups:</h2>
+                        </div>
+                        <div className="row">
+                            <div className="d-flex">
+                                <input type="text" 
+                                                name="group" 
+                                                placeholder="Group name" 
+                                                className="form-control"
+                                                onChange={this.onChange}/>
+                                <button
+                                    onClick={this.addRssGroup}
+                                    className="btn btn-small btn-sm btn-danger"
+                                >
+                                    Add RSS group
+                                </button>
+                            </div>
+                        </div>
                         {this.state.groupList.map(item => (
                             <div key={item.group_id} className="row col-md-12 mt-5 mx-auto">
                                 <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">{item.group_name}</h5>
-                                        <div className="row">
-                                            <div className="input-group">
-                                                <span className="input-group-btn">
-                                                    <button className="btn btn-default" type="button">Go!</button>
-                                                </span>
-                                                <input type="text" className="form-control" placeholder="Search for..." />
-                                            </div>
-                                            <button className="btn btn-small btn-sm btn-danger">Edit group name</button>
+                                    <div className="card-header">
+                                        <div>
+                                            <h5 className="card-title">{item.group_name}</h5>
+                                            <EditGroupTitle 
+                                                groupId={item.group_id}
+                                                refreshCallback={this.getChannelGroups}
+                                            />
                                         </div>
                                         <button
                                             onClick={() => this.deleteGroupFn(item.group_id)}
                                             className="btn btn-small btn-sm btn-danger"
                                         >
-                                            X
+                                            Remove group
                                         </button>
-
+                                    </div>
+                                    <div className="card-body">
                                         <ul className="list-group list-group-flush">
                                             {item.channels.map(channelItem => (
                                             <li className="list-group-item d-flex justify-content-between align-items-center">
