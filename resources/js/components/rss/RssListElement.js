@@ -3,15 +3,11 @@ import React, { Component } from "react";
 export default class RssListElement extends Component {
     constructor() {
         super();
-        this.state = {
-            groupId: ''
-        };
+        const groupIdtoPass = '';
     }
 
     change(id) {
-        console.log('event', id)
-        this.setState.groupId = id
-        console.log('event', this.setState.groupId)
+        this.groupIdtoPass = id;
     }
 
     render() {
@@ -34,7 +30,7 @@ export default class RssListElement extends Component {
                     ))}
                 </select>
                 <button
-                    onClick={() => this.props.onClickAddToGroup(this.state.groupId, this.props.id)}
+                    onClick={() => this.props.onClickAddToGroup(event, this.groupIdtoPass, this.props.id)}
                     className="btn btn-small btn-sm btn-danger"
                 >
                     add channel to group

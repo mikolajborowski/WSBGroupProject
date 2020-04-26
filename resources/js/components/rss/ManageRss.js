@@ -37,11 +37,10 @@ export default class ManageRss extends Component {
     }
 
     deleteGroupFn(id) {
-        console.log('remove this group:', id)
-        const remove = {
-            group_id: id
-        }
-        deleteGroup(remove)
+        // let formData = new FormData();
+     
+        // formData.append('channel_group_id', id)
+        // deleteGroup(formData)
         this.getChannelGroups()
     }
 
@@ -56,17 +55,28 @@ export default class ManageRss extends Component {
         });
     }
 
-    addChannelToGroupFn(groupID, channelID) {
-        // event.persist();
-        // const { dataset } = event.target;
-        console.log('co to pokaze', channelID)
-        console.log('qweq', groupID)
+    addChannelToGroupFn(event, groupID, channelID) {
+        const data = {
+            group_id: groupID,
+            channel_id: channelID
+        }
+       
+        addChannelToGroup(data).then(response => {
+            if (response) {
+                console.log('response', response)
+            } else {
+                this.notifyError()
+            }
+        });
+        this.getChannelGroups()
     }
 
     onClickDeleteRss(event) {
         event.persist();
         const { dataset } = event.target;
         const id = dataset.rssid;
+    
+        console.log('delete channel', typeof id) 
         const newData = this.state.data.filter(item => item.id !== id);
         deleteChannel(id);
         this.setState({data: newData})
@@ -83,7 +93,6 @@ export default class ManageRss extends Component {
     }
 
     addRssGroup() {
-        console.log('this.state.group', this.state.group)
         const name = {
             name: this.state.group
         }
@@ -95,6 +104,20 @@ export default class ManageRss extends Component {
             }
         });
         this.setState.group = '';
+        this.getChannelGroups()
+    }
+
+    removeChannelFromGroupFn(dataToRemove) {
+        const remove = {
+            id_of_group_record: dataToRemove.id_of_group_record
+        }
+        deleteChannelFromGroup(dataToRemove.id_of_group_record).then(response => {
+            if (response) {
+                console.log('response', response)
+            } else {
+                this.notifyError()
+            }
+        })
         this.getChannelGroups()
     }
 
@@ -158,6 +181,15 @@ export default class ManageRss extends Component {
                                 <div className="card">
                                     <div className="card-body">
                                         <h5 className="card-title">{item.group_name}</h5>
+                                        <div className="row">
+                                            <div className="input-group">
+                                                <span className="input-group-btn">
+                                                    <button className="btn btn-default" type="button">Go!</button>
+                                                </span>
+                                                <input type="text" className="form-control" placeholder="Search for..." />
+                                            </div>
+                                            <button className="btn btn-small btn-sm btn-danger">Edit group name</button>
+                                        </div>
                                         <button
                                             onClick={() => this.deleteGroupFn(item.group_id)}
                                             className="btn btn-small btn-sm btn-danger"
@@ -165,15 +197,22 @@ export default class ManageRss extends Component {
                                             X
                                         </button>
 
-                                        <RssListElement
-                          key={item.id}
-                          id={item.id}
-                          name={item.name}
-                          link={item.link}
-                          onClick={this.onClickDeleteRss}
-                          onClickAddToGroup={this.addChannelToGroupFn}
-                          groupList={this.state.groupList}
-                      />
+                                        <ul className="list-group list-group-flush">
+                                            {item.channels.map(channelItem => (
+                                            <li className="list-group-item d-flex justify-content-between align-items-center">
+                                                <div className="d-flex flex-column">
+                                                <span className="lead text-capitalize">{channelItem.name}</span>
+                                                <span className="mt-1 mr-4 text-break">{channelItem.link}</span>
+                                                </div>
+                                                <button
+                                                    onClick={() => this.removeChannelFromGroupFn(channelItem)}
+                                                    className="btn btn-small btn-sm btn-danger"
+                                                >
+                                                    Remove from group
+                                                </button>
+                                            </li>
+                                            ))}
+                                        </ul>
                                     </div>
                                 </div>
                             </div>

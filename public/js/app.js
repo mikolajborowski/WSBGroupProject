@@ -76536,7 +76536,7 @@ var deleteChannelFromGroup = /*#__PURE__*/function () {
           case 0:
             _context5.prev = 0;
             _context5.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/group/delete/channel/".concat(id), id, {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/group/delete/channel", id, {
               headers: {
                 Authorization: "Bearer ".concat(localStorage.usertoken)
               }
@@ -76573,7 +76573,7 @@ var deleteGroup = /*#__PURE__*/function () {
           case 0:
             _context6.prev = 0;
             _context6.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/group/delete/".concat(id), id, {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/group/delete", id, {
               headers: {
                 Authorization: "Bearer ".concat(localStorage.usertoken)
               }
@@ -78012,9 +78012,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_Loading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/Loading */ "./resources/js/components/utils/Loading.js");
 /* harmony import */ var _RssListElement__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RssListElement */ "./resources/js/components/rss/RssListElement.js");
 /* harmony import */ var _api_channels_group__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../api/channels-group */ "./resources/js/api/channels-group.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -78093,11 +78093,9 @@ var ManageRss = /*#__PURE__*/function (_Component) {
   }, {
     key: "deleteGroupFn",
     value: function deleteGroupFn(id) {
-      console.log('remove this group:', id);
-      var remove = {
-        group_id: id
-      };
-      Object(_api_channels_group__WEBPACK_IMPORTED_MODULE_5__["deleteGroup"])(remove);
+      // let formData = new FormData();
+      // formData.append('channel_group_id', id)
+      // deleteGroup(formData)
       this.getChannelGroups();
     }
   }, {
@@ -78119,11 +78117,21 @@ var ManageRss = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "addChannelToGroupFn",
-    value: function addChannelToGroupFn(groupID, channelID) {
-      // event.persist();
-      // const { dataset } = event.target;
-      console.log('co to pokaze', channelID);
-      console.log('qweq', groupID);
+    value: function addChannelToGroupFn(event, groupID, channelID) {
+      var _this4 = this;
+
+      var data = {
+        group_id: groupID,
+        channel_id: channelID
+      };
+      Object(_api_channels_group__WEBPACK_IMPORTED_MODULE_5__["addChannelToGroup"])(data).then(function (response) {
+        if (response) {
+          console.log('response', response);
+        } else {
+          _this4.notifyError();
+        }
+      });
+      this.getChannelGroups();
     }
   }, {
     key: "onClickDeleteRss",
@@ -78131,6 +78139,7 @@ var ManageRss = /*#__PURE__*/function (_Component) {
       event.persist();
       var dataset = event.target.dataset;
       var id = dataset.rssid;
+      console.log('delete channel', _typeof(id));
       var newData = this.state.data.filter(function (item) {
         return item.id !== id;
       });
@@ -78152,9 +78161,8 @@ var ManageRss = /*#__PURE__*/function (_Component) {
   }, {
     key: "addRssGroup",
     value: function addRssGroup() {
-      var _this4 = this;
+      var _this5 = this;
 
-      console.log('this.state.group', this.state.group);
       var name = {
         name: this.state.group
       };
@@ -78162,16 +78170,33 @@ var ManageRss = /*#__PURE__*/function (_Component) {
         if (response) {
           console.log('response', response);
         } else {
-          _this4.notifyError();
+          _this5.notifyError();
         }
       });
       this.setState.group = '';
       this.getChannelGroups();
     }
   }, {
+    key: "removeChannelFromGroupFn",
+    value: function removeChannelFromGroupFn(dataToRemove) {
+      var _this6 = this;
+
+      var remove = {
+        id_of_group_record: dataToRemove.id_of_group_record
+      };
+      Object(_api_channels_group__WEBPACK_IMPORTED_MODULE_5__["deleteChannelFromGroup"])(dataToRemove.id_of_group_record).then(function (response) {
+        if (response) {
+          console.log('response', response);
+        } else {
+          _this6.notifyError();
+        }
+      });
+      this.getChannelGroups();
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this7 = this;
 
       var showRssList = this.state.data ? this.state.data.map(function (item) {
         return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RssListElement__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -78179,9 +78204,9 @@ var ManageRss = /*#__PURE__*/function (_Component) {
           id: item.id,
           name: item.name,
           link: item.link,
-          onClick: _this5.onClickDeleteRss,
-          onClickAddToGroup: _this5.addChannelToGroupFn,
-          groupList: _this5.state.groupList
+          onClick: _this7.onClickDeleteRss,
+          onClickAddToGroup: _this7.addChannelToGroupFn,
+          groupList: _this7.state.groupList
         });
       }) : null;
 
@@ -78190,7 +78215,7 @@ var ManageRss = /*#__PURE__*/function (_Component) {
       } else {
         return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(React__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_GoBack__WEBPACK_IMPORTED_MODULE_2__["default"], {
           onClick: function onClick() {
-            return _this5.props.history.goBack();
+            return _this7.props.history.goBack();
           }
         }), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "row col-md-12 mt-5 mx-auto"
@@ -78228,20 +78253,44 @@ var ManageRss = /*#__PURE__*/function (_Component) {
             className: "card-body"
           }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
             className: "card-title"
-          }, item.group_name), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          }, item.group_name), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "row"
+          }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "input-group"
+          }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "input-group-btn"
+          }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            className: "btn btn-default",
+            type: "button"
+          }, "Go!")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "text",
+            className: "form-control",
+            placeholder: "Search for..."
+          })), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            className: "btn btn-small btn-sm btn-danger"
+          }, "Edit group name")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
             onClick: function onClick() {
-              return _this5.deleteGroupFn(item.group_id);
+              return _this7.deleteGroupFn(item.group_id);
             },
             className: "btn btn-small btn-sm btn-danger"
-          }, "X"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RssListElement__WEBPACK_IMPORTED_MODULE_4__["default"], {
-            key: item.id,
-            id: item.id,
-            name: item.name,
-            link: item.link,
-            onClick: _this5.onClickDeleteRss,
-            onClickAddToGroup: _this5.addChannelToGroupFn,
-            groupList: _this5.state.groupList
-          }))));
+          }, "X"), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+            className: "list-group list-group-flush"
+          }, item.channels.map(function (channelItem) {
+            return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+              className: "list-group-item d-flex justify-content-between align-items-center"
+            }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "d-flex flex-column"
+            }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+              className: "lead text-capitalize"
+            }, channelItem.name), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+              className: "mt-1 mr-4 text-break"
+            }, channelItem.link)), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+              onClick: function onClick() {
+                return _this7.removeChannelFromGroupFn(channelItem);
+              },
+              className: "btn btn-small btn-sm btn-danger"
+            }, "Remove from group"));
+          })))));
         })));
       }
     }
@@ -78392,18 +78441,14 @@ var RssListElement = /*#__PURE__*/function (_Component) {
     _classCallCheck(this, RssListElement);
 
     _this = _super.call(this);
-    _this.state = {
-      groupId: ''
-    };
+    var groupIdtoPass = '';
     return _this;
   }
 
   _createClass(RssListElement, [{
     key: "change",
     value: function change(id) {
-      console.log('event', id);
-      this.setState.groupId = id;
-      console.log('event', this.setState.groupId);
+      this.groupIdtoPass = id;
     }
   }, {
     key: "render",
@@ -78434,7 +78479,7 @@ var RssListElement = /*#__PURE__*/function (_Component) {
         }, item.group_name);
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this2.props.onClickAddToGroup(_this2.state.groupId, _this2.props.id);
+          return _this2.props.onClickAddToGroup(event, _this2.groupIdtoPass, _this2.props.id);
         },
         className: "btn btn-small btn-sm btn-danger"
       }, "add channel to group"));
