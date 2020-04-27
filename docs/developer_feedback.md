@@ -5,9 +5,12 @@ As part of the project, we were asked to describe what we think are upsides and 
 Here is what we consider to be downsides:
 
 - Current lack of Rss App MySQL database deployment to Microsoft Azure due to limitations on student subscriptions.
-- If anything but an RSS link is added in the RSS link field, the app crashes. This is a bug requiring further development.
+- If anything but an RSS link in the xml format is added in the RSS link field, the app crashes. This is a bug requiring further development.
 - The downside of using a CSS framework like Bootstrap is a possible issue with style overwriting. Moreover, switching to a different framework would be time-consuming.
 - Lack of typescript provides a risk of errors.
+- Lack of user authentication during registration.
+- Week password policy.
+
 
 
 On the upside:
