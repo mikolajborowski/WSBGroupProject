@@ -79565,8 +79565,8 @@ var Navbar = /*#__PURE__*/function (_Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Igor\Desktop\wsb\wsb\WSBGroupProject\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Igor\Desktop\wsb\wsb\WSBGroupProject\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\WSBGroupProject\WSBGroupProject\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\WSBGroupProject\WSBGroupProject\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
