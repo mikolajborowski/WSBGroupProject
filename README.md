@@ -2,7 +2,7 @@
 
 The Rss App is a web aplication created as part of a university project at WSB Wroclaw by:
 
-- Anna Bojanowska
+- Anna Burzyńska
 - Mikołaj Borowski
 - Marta Gorlicka
 - Igor Grzesista
