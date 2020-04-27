@@ -17,7 +17,9 @@ Rss App lets users create custom RSS feeds assigned to their user accounts. User
 - you can edit your account details, meaning provide a different username or email address. ![Editing Rss App User Profile](images/screen4.png)
 - if you are and administrator, you can manage users and grant them admin permission. ![Rss App Admin Panel](images/screen5.png)
 
-5. To configure your RSS feed, go to the **Rss** tab. ![Rss Tab](images/screen6.png) In the *Rss* tab, you can:
+5. To configure your RSS feed, go to the **Rss** tab. ![Rss Tab](images/screen6.png) 
+
+In the *Rss* tab, you can:
 
 - add an RSS link in an xml format to your feed and give it a custom nam.e ![Adding an RSS link](images/screen7.png)
 - view the list of links in your RSS feed by clicking **Show rss list**. ![Rss App List of RSS Links](images/screen8.png)
