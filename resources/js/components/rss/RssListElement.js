@@ -32,9 +32,9 @@ export default class RssListElement extends Component {
                     </select>
                     <button
                         onClick={() => this.props.onClickAddToGroup(event, this.groupIdtoPass, this.props.id)}
-                        className="btn btn-small btn-sm btn-danger"
+                        className="btn btn-small btn-sm btn-success"
                     >
-                        add channel to group
+                        +
                     </button>
                 </div>
             </li>

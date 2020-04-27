@@ -5,8 +5,9 @@ export default class EditGroupTitle extends Component {
         super();
         this.state = {
             newName: '',
-            showInput: true
+            isToggleOn: false
         };
+        this.handleClick = this.handleClick.bind(this);
     }
 
     changeGroupTitle() {
@@ -28,22 +29,25 @@ export default class EditGroupTitle extends Component {
         });
     }
 
-    toggleShow() {
-        console.log('changed', this.state.showInput)
-        this.state.showInput = !this.state.showInput
-        console.log('changed', this.state.showInput)
-        
-    }
+    handleClick() {
+		this.setState(function(prevState) {
+			return {isToggleOn: !prevState.isToggleOn};
+        })
+	}
 
     render() {
         return (
-            <div className="row">
-                <div className="input-group">
-                    <input type="text" value={this.state.newName} onChange={(event) => this.onChangeFn(event)} name="newName" className="form-control" placeholder="type here" />
-                    <span className="input-group-btn">
-                        <button className="btn btn-default btn-edit-title" onClick={() => this.changeGroupTitle()} type="button">Edit group name</button>
-                    </span>
-                </div>
+            <div className="">
+                <button className="btn btn-small btn-sm btn-info" onClick={() => this.handleClick()}>edit title</button>
+                {this.state.isToggleOn ? (
+                    <div className="input-group">
+                        <input type="text" value={this.state.newName} onChange={(event) => this.onChangeFn(event)} name="newName" className="form-control" placeholder="type here" />
+                        <span className="input-group-btn">
+                            <button className="btn btn-small btn-sm btn-success" onClick={() => this.changeGroupTitle()} type="button">Edit</button>
+                        </span>
+                    </div>
+                ) : (null)}
+                
             </div>
         );
     }

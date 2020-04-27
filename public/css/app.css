@@ -10920,6 +10920,7 @@ a.text-dark:focus {
 
 .card {
   width: 100%;
+  margin-bottom: 40px;
 }
 
 .btn-edit-title {

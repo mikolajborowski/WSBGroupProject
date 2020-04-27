@@ -170,11 +170,11 @@ export default class ManageRss extends Component {
                             <div className="row col-sm-8 mx-auto"></div>
                         </div>
                     </div>
-                    <div className="row col-md-12 mt-5 mx-auto">
-                        <div className="row">
+                    <div className="row col-md-12  mx-auto">
+                        <div className=" col-md-12  mx-auto">
                             <h2>Groups:</h2>
                         </div>
-                        <div className="row">
+                        <div className=" col-md-4">
                             <div className="d-flex">
                                 <input type="text" 
                                                 name="group" 
@@ -183,17 +183,15 @@ export default class ManageRss extends Component {
                                                 onChange={this.onChange}/>
                                 <button
                                     onClick={this.addRssGroup}
-                                    className="btn btn-small btn-sm btn-danger"
-                                >
-                                    Add RSS group
-                                </button>
+                                    className="btn btn-small btn-sm btn-success"
+                                >+</button>
                             </div>
                         </div>
                         {this.state.groupList.map(item => (
                             <div key={item.group_id} className="row col-md-12 mt-5 mx-auto">
                                 <div className="card">
                                     <div className="card-header">
-                                        <div>
+                                        <div >
                                             <h5 className="card-title">{item.group_name}</h5>
                                             <EditGroupTitle 
                                                 groupId={item.group_id}

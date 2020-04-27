@@ -77934,8 +77934,9 @@ var EditGroupTitle = /*#__PURE__*/function (_Component) {
     _this = _super.call(this);
     _this.state = {
       newName: '',
-      showInput: true
+      isToggleOn: false
     };
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -77959,11 +77960,13 @@ var EditGroupTitle = /*#__PURE__*/function (_Component) {
       this.setState(_defineProperty({}, event.target.name, event.target.value));
     }
   }, {
-    key: "toggleShow",
-    value: function toggleShow() {
-      console.log('changed', this.state.showInput);
-      this.state.showInput = !this.state.showInput;
-      console.log('changed', this.state.showInput);
+    key: "handleClick",
+    value: function handleClick() {
+      this.setState(function (prevState) {
+        return {
+          isToggleOn: !prevState.isToggleOn
+        };
+      });
     }
   }, {
     key: "render",
@@ -77971,8 +77974,13 @@ var EditGroupTitle = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: ""
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-small btn-sm btn-info",
+        onClick: function onClick() {
+          return _this2.handleClick();
+        }
+      }, "edit title"), this.state.isToggleOn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "input-group"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
@@ -77986,12 +77994,12 @@ var EditGroupTitle = /*#__PURE__*/function (_Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "input-group-btn"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-default btn-edit-title",
+        className: "btn btn-small btn-sm btn-success",
         onClick: function onClick() {
           return _this2.changeGroupTitle();
         },
         type: "button"
-      }, "Edit group name"))));
+      }, "Edit"))) : null);
     }
   }]);
 
@@ -78365,11 +78373,11 @@ var ManageRss = /*#__PURE__*/function (_Component) {
         }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "row col-sm-8 mx-auto"
         }))), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row col-md-12 mt-5 mx-auto"
+          className: "row col-md-12  mx-auto"
         }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
+          className: " col-md-12  mx-auto"
         }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Groups:")), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row"
+          className: " col-md-4"
         }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "d-flex"
         }, /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -78380,8 +78388,8 @@ var ManageRss = /*#__PURE__*/function (_Component) {
           onChange: this.onChange
         }), /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: this.addRssGroup,
-          className: "btn btn-small btn-sm btn-danger"
-        }, "Add RSS group"))), this.state.groupList.map(function (item) {
+          className: "btn btn-small btn-sm btn-success"
+        }, "+"))), this.state.groupList.map(function (item) {
           return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             key: item.group_id,
             className: "row col-md-12 mt-5 mx-auto"
@@ -78611,8 +78619,8 @@ var RssListElement = /*#__PURE__*/function (_Component) {
         onClick: function onClick() {
           return _this2.props.onClickAddToGroup(event, _this2.groupIdtoPass, _this2.props.id);
         },
-        className: "btn btn-small btn-sm btn-danger"
-      }, "add channel to group")));
+        className: "btn btn-small btn-sm btn-success"
+      }, "+")));
     }
   }]);
 
